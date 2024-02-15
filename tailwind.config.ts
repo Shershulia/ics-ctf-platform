@@ -18,6 +18,7 @@ const config: Config = {
         blue:"#66FCF1",
         darkBlue:"#45A29E",
         success: "#45A29E",
+        primary: "#45A29E",
         red: "#FF0000",
         yellow: "#7C7700"
 
