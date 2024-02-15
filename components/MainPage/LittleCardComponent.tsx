@@ -15,7 +15,7 @@ const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProp
                 <p>{problem.category}</p>
                 <p>{problem.points} pts.</p>
             </div>
-            <p className={"text-xl font-bold text-clip overflow-hidden"}>{problem.title}</p>
+            <p className={"text-xl font-bold truncate"}>{problem.title}</p>
             <p className={"text-ellipsis  overflow-hidden h-1/2"}>{problem.description}</p>
             <div className={"flex justify-between items-center"}>
                 <p className={`
