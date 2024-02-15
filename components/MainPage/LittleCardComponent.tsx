@@ -22,7 +22,7 @@ const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProp
                 
                 ${(problem.difficulty==="Hard") && "text-red"}
                 ${(problem.difficulty==="Medium") && "text-yellow"}
-                ${(problem.difficulty==="Easy") && "text-green"}
+                ${(problem.difficulty==="Easy") && "text-success"}
                 font-bold
                 `}>{problem.difficulty}</p>
             </div>

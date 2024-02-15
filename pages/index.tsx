@@ -1,5 +1,10 @@
-import {FrontendLayout, LittleCardComponent} from "@/components";
+import {
+    FrontendLayout,
+    LittleCardComponent,
+    TopFilterWindow
+} from "@/components";
 import {IProblem} from "@/ITypes/IProblem";
+
 const exampleCard : IProblem = {
     _id: "123",
     title: "Name of problem aaaaaaaaaaaaaaaaaaa",
@@ -13,7 +18,14 @@ export default function Home() {
   return (
       <div>
         <FrontendLayout>
-            <LittleCardComponent problem={exampleCard} width={"w-[300px]"} height={"h-[300px]"}/>
+            <div className={"flex gap-[100px]"}>
+                <div className={"w-1/3"}>
+                    <TopFilterWindow></TopFilterWindow>
+                </div>
+
+                <LittleCardComponent problem={exampleCard} width={"w-[300px]"} height={"h-[300px]"}/>
+            </div>
+
         </FrontendLayout>
       </div>
   )
