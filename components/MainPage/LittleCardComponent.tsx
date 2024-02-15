@@ -15,14 +15,14 @@ const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProp
                 <p>{problem.category}</p>
                 <p>{problem.points} pts.</p>
             </div>
-            <p className={"text-xl font-bold text-clip overflow-hidden"}>{problem.title}</p>
+            <p className={"text-xl font-bold truncate"}>{problem.title}</p>
             <p className={"text-ellipsis  overflow-hidden h-1/2"}>{problem.description}</p>
             <div className={"flex justify-between items-center"}>
                 <p className={`
                 
                 ${(problem.difficulty==="Hard") && "text-red"}
                 ${(problem.difficulty==="Medium") && "text-yellow"}
-                ${(problem.difficulty==="Easy") && "text-green"}
+                ${(problem.difficulty==="Easy") && "text-success"}
                 font-bold
                 `}>{problem.difficulty}</p>
             </div>
