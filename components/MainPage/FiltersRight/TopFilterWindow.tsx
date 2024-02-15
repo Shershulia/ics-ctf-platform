@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import {Checkbox} from "@nextui-org/react";
+import {Checkbox, Input} from "@nextui-org/react";
+import { FaSearch } from "react-icons/fa";
 
 const TopFilterWindow = () => {
     const [hideSolved, setHideSolved] = useState(false);
     const [showSaved, setShowSaved] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
 
     return (
         <div className={"bg-black w-full rounded-md py-4 px-8"}>
@@ -33,6 +35,22 @@ const TopFilterWindow = () => {
                 >
                     Show Saved
                 </Checkbox>
+                    <Input
+                        label="Title"
+                        variant={"bordered"}
+                        value={searchValue}
+                        onValueChange={setSearchValue}
+                        classNames={{
+                            inputWrapper:" border border-success group-data-[focus=true]:border-blue text-white ",
+                            label:"text-white text-lg",
+                            innerWrapper:"text-lg text-center group-data-[has-label=true]:items-center",
+                            input: "text-lg"
+                        }}
+                        endContent={
+                            <FaSearch className={"text-success text-lg"}/>
+                        }
+                    />
+
                 </div>
             <div>
 
