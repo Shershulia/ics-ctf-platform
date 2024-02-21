@@ -9,9 +9,11 @@ import RightFiltersComponent from "./MainPage/FiltersRight/RightFiltersComponent
 import CategoryFilterWindow from "./MainPage/FiltersRight/CategoryFilterWindow";
 import SortTopFilterComponent from "./MainPage/SortTopFilter/SortTopFilterComponent";
 import PopUp from "./ProblemPopUp/PopUp";
-import DisplayCards from "./ProblemPopUp/DisplayCards";
+import DisplayCardsComponent from "./ProblemPopUp/DisplayCardsComponent";
+import DisplableCard from "./ProblemPopUp/DisplableCard";
 export  {
-    DisplayCards,
+    DisplableCard,
+    DisplayCardsComponent,
     PopUp,
     MainPageLayout,
     RightFiltersComponent,

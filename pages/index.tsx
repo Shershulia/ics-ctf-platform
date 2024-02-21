@@ -1,5 +1,5 @@
 import {
-    DisplayCards,
+    DisplayCardsComponent,
     FrontendLayout,
     LittleCardComponent, MainPageLayout,
     RightFiltersComponent, SortTopFilterComponent,
@@ -22,7 +22,7 @@ export default function Home() {
         <FrontendLayout>
             <MainPageLayout>
 
-                <DisplayCards problems={cards} height={"max-h-80"} />
+                <DisplayCardsComponent problems={cards} height={"max-h-80"} />
 
             </MainPageLayout>
         </FrontendLayout>
