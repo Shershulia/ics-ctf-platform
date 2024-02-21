@@ -8,7 +8,7 @@ const StarRatingComponent = ({defaultHowMany=1}:StarRatingComponentProps) => {
     const [howMany, setHowMany] = useState(defaultHowMany);
     const five = [1,2,3,4,5];
 
-    function handleStarClick(n){
+    function handleStarClick(n : number){
         setHowMany(n)
     }
 
