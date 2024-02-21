@@ -8,14 +8,12 @@ import DifficultyLevelWindow from "./MainPage/FiltersRight/DifficultyLevelWindow
 import RightFiltersComponent from "./MainPage/FiltersRight/RightFiltersComponent";
 import CategoryFilterWindow from "./MainPage/FiltersRight/CategoryFilterWindow";
 import SortTopFilterComponent from "./MainPage/SortTopFilter/SortTopFilterComponent";
-import PopUp from "./ProblemPopUp/PopUp";
 import DisplayCardsComponent from "./ProblemPopUp/DisplayCardsComponent";
 import DisplableCard from "./ProblemPopUp/DisplableCard";
 import StarRatingComponent from "./ProblemPopUp/StarRatingComponent";
 export  {
     DisplableCard,
     DisplayCardsComponent,
-    PopUp,
     MainPageLayout,
     RightFiltersComponent,
     HeaderComponent,

@@ -1,6 +1,7 @@
 import React from 'react';
 import {IProblem} from "@/ITypes/IProblem";
 import {DisplableCard, PopUp} from "@/components";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link} from "@nextui-org/react";
 type LittleCardProps = {
     problem: IProblem,
     width?:string,
@@ -8,14 +9,14 @@ type LittleCardProps = {
 };
 //Default width is "" if its not provided in the props
 const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProps) => {
-    const [showPopUp, setShowPopUp] = React.useState(false);
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
     const triggerPopUp = () => {
         setShowPopUp(previousState => !previousState);
     }
     return (
         <div>
             <div className={`bg-white border p-4 border-2 rounded-md 
-        overflow-hidden flex flex-col justify-between cursor-pointer ${width} ${height}` } onClick={triggerPopUp}>
+        overflow-hidden flex flex-col justify-between cursor-pointer ${width} ${height}` } onClick={onOpen}>
                 <div className={"flex justify-between items-center"}>
                     <p>{problem.category}</p>
                     <p>{problem.points} pts.</p>
@@ -32,9 +33,45 @@ const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProp
                 `}>{problem.difficulty}</p>
                 </div>
             </div>
-            <PopUp trigger={showPopUp} setTrigger={triggerPopUp}>
-                <DisplableCard problem={problem} />
-            </PopUp>
+
+
+            <Modal
+                isOpen={isOpen}
+                onOpenChange={onOpenChange}
+                placement="center"
+                size={"2xl"}
+                backdrop={"blur"}
+                motionProps={{
+                    variants: {
+                        enter: {
+                            y: 0,
+                            opacity: 1,
+                            transition: {
+                                duration: 0.3,
+                                ease: "easeOut",
+                            },
+                        },
+                        exit: {
+                            y: -20,
+                            opacity: 0,
+                            transition: {
+                                duration: 0.2,
+                                ease: "easeIn",
+                            },
+                        },
+                    }
+                }}
+            >
+                <ModalContent>
+                    {(onClose) => (
+                        <div className={"m-12"}>
+                            <DisplableCard problem={problem} />
+                        </div>
+                    )}
+                </ModalContent>
+            </Modal>
+
+
         </div>
 
     );

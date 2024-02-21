@@ -10,6 +10,7 @@ const DisplayCardsComponent = ({problems, width = "", height = ""} : DisplayCard
 
     return (
         <div className={"h-full w-full"}>
+
             <div className="grid gap-4 grid-cols-3">
                 {problems.map((problem : IProblem, index : number) => {
                         return (
