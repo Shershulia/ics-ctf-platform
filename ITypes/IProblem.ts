@@ -6,5 +6,5 @@ export type IProblem = {
     attached_files?:[string];
     category:string;
     difficulty:string;
-    hints?:[string];
+    hints?:string[];
 }

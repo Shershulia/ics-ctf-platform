@@ -11,7 +11,9 @@ const MainPageLayout = ({ children }: MainPageLayoutProps) => {
             </div>
             <div className={"flex flex-col w-full gap-[50px]"}>
                 <SortTopFilterComponent/>
-                {children}
+                <div className={"w-full h-full"}>
+                    {children}
+                </div>
             </div>
 
         </div>
