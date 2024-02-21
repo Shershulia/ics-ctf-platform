@@ -27,11 +27,15 @@ export const CustomRadio = (props : any) => {
     );
 };
 const CategoryFilterWindow = ({categories}: CategoryFilterProps) => {
+    const [selectedCategory, setSelectedCategory] = React.useState(categories[0]);
+
     return (
         <div className={"bg-black w-full rounded-md py-4 px-8"}>
             <p className={"text-white font-bold text-xl text-center mb-2"}>Category filter</p>
             <div className={"flex flex-col justify-center gap-2 w-full"}>
-                <RadioGroup className={"w-full"}>
+                <RadioGroup className={"w-full"}
+                            value={selectedCategory}
+                            onValueChange={setSelectedCategory}>
                     {categories.map((category)=>(
                         <CustomRadio value={category} key={category}>
                             {category}</CustomRadio>
