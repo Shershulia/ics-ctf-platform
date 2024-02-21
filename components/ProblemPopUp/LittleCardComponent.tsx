@@ -1,16 +1,18 @@
 import React from 'react';
 import {IProblem} from "@/ITypes/IProblem";
+import {PopUp} from "@/components";
 type LittleCardProps = {
     problem: IProblem,
     width?:string,
     height?:string,
+    triggerPopUp: () => void,
 };
 //Default width is "" if its not provided in the props
-const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProps) => {
-    return (
-        <div className={`bg-white border p-8 border-2 rounded-md ${width} ${height} 
-        overflow-hidden flex flex-col justify-between cursor-pointer` }>
+const LittleCardComponent = ({problem, width = "", height = "", triggerPopUp} : LittleCardProps) => {
 
+    return (
+        <div className={`bg-white border p-8 border-2 rounded-md 
+        overflow-hidden flex flex-col justify-between cursor-pointer ${width} ${height}` } onClick={triggerPopUp}>
             <div className={"flex justify-between items-center"}>
                 <p>{problem.category}</p>
                 <p>{problem.points} pts.</p>
@@ -26,7 +28,6 @@ const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProp
                 font-bold
                 `}>{problem.difficulty}</p>
             </div>
-
         </div>
     );
 };

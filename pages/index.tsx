@@ -1,4 +1,5 @@
 import {
+    DisplayCards,
     FrontendLayout,
     LittleCardComponent, MainPageLayout,
     RightFiltersComponent, SortTopFilterComponent,
@@ -14,12 +15,15 @@ const exampleCard : IProblem = {
     difficulty:"Hard",
     hints:["Here is a hint"],
 }
+const cards : IProblem[] = Array.from({ length: 9 }, () => ({ ...exampleCard }));
 export default function Home() {
   return (
       <div>
         <FrontendLayout>
             <MainPageLayout>
-                <LittleCardComponent problem={exampleCard} width={"w-1/3"} height={"h-1/3"}/>
+
+                <DisplayCards problems={cards} height={"max-h-80"} />
+
             </MainPageLayout>
         </FrontendLayout>
       </div>
