@@ -11,6 +11,7 @@ import SortTopFilterComponent from "./MainPage/SortTopFilter/SortTopFilterCompon
 import PopUp from "./ProblemPopUp/PopUp";
 import DisplayCardsComponent from "./ProblemPopUp/DisplayCardsComponent";
 import DisplableCard from "./ProblemPopUp/DisplableCard";
+import StarRatingComponent from "./ProblemPopUp/StarRatingComponent";
 export  {
     DisplableCard,
     DisplayCardsComponent,
@@ -24,6 +25,7 @@ export  {
     TopFilterWindow,
     DifficultyLevelWindow,
     CategoryFilterWindow,
-    SortTopFilterComponent
+    SortTopFilterComponent,
+    StarRatingComponent
 
 }

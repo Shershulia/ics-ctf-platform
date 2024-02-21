@@ -13,7 +13,7 @@ const exampleCard : IProblem = {
     points: 30,
     category:"General Skills",
     difficulty:"Hard",
-    hints:["Here is a hint"],
+    hints:["Here is a hint", "Here is a hint 2"],
 }
 const cards : IProblem[] = Array.from({ length: 9 }, () => ({ ...exampleCard }));
 export default function Home() {
