@@ -6,6 +6,7 @@ import TopFilterWindow from "./MainPage/FiltersRight/TopFilterWindow";
 import DifficultyLevelWindow from "./MainPage/FiltersRight/DifficultyLevelWindow";
 import RightFiltersComponent from "./MainPage/FiltersRight/RightFiltersComponent";
 import CategoryFilterWindow from "./MainPage/FiltersRight/CategoryFilterWindow";
+import SortTopFilterComponent from "./MainPage/SortTopFilter/SortTopFilterComponent";
 export  {
     RightFiltersComponent,
     HeaderComponent,
@@ -14,6 +15,7 @@ export  {
     LittleCardComponent,
     TopFilterWindow,
     DifficultyLevelWindow,
-    CategoryFilterWindow
+    CategoryFilterWindow,
+    SortTopFilterComponent
 
 }

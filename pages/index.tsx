@@ -1,7 +1,7 @@
 import {
     FrontendLayout,
     LittleCardComponent,
-    RightFiltersComponent,
+    RightFiltersComponent, SortTopFilterComponent,
 } from "@/components";
 import {IProblem} from "@/ITypes/IProblem";
 
@@ -22,8 +22,12 @@ export default function Home() {
                 <div className={"w-1/3"}>
                     <RightFiltersComponent/>
                 </div>
+                <div className={"flex flex-col w-full gap-[50px]"}>
+                    <SortTopFilterComponent/>
+                    <LittleCardComponent problem={exampleCard} width={"w-[300px]"} height={"h-[300px]"}/>
 
-                <LittleCardComponent problem={exampleCard} width={"w-[300px]"} height={"h-[300px]"}/>
+                </div>
+
             </div>
 
         </FrontendLayout>
