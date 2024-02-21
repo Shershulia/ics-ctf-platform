@@ -1,7 +1,7 @@
 import React from 'react';
 import {IProblem} from "@/ITypes/IProblem";
-import {DisplableCard, PopUp} from "@/components";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link} from "@nextui-org/react";
+import {DisplableCard} from "@/components";
+import {Modal, ModalContent, useDisclosure} from "@nextui-org/react";
 type LittleCardProps = {
     problem: IProblem,
     width?:string,
@@ -10,9 +10,7 @@ type LittleCardProps = {
 //Default width is "" if its not provided in the props
 const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProps) => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-    const triggerPopUp = () => {
-        setShowPopUp(previousState => !previousState);
-    }
+
     return (
         <div>
             <div className={`bg-white border p-4 border-2 rounded-md 
