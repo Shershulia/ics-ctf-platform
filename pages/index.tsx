@@ -1,6 +1,6 @@
 import {
     FrontendLayout,
-    LittleCardComponent,
+    LittleCardComponent, MainPageLayout,
     RightFiltersComponent, SortTopFilterComponent,
 } from "@/components";
 import {IProblem} from "@/ITypes/IProblem";
@@ -18,18 +18,9 @@ export default function Home() {
   return (
       <div>
         <FrontendLayout>
-            <div className={"flex gap-[100px]"}>
-                <div className={"w-1/3"}>
-                    <RightFiltersComponent/>
-                </div>
-                <div className={"flex flex-col w-full gap-[50px]"}>
-                    <SortTopFilterComponent/>
-                    <LittleCardComponent problem={exampleCard} width={"w-[300px]"} height={"h-[300px]"}/>
-
-                </div>
-
-            </div>
-
+            <MainPageLayout>
+                <LittleCardComponent problem={exampleCard} width={"w-1/3"} height={"h-1/3"}/>
+            </MainPageLayout>
         </FrontendLayout>
       </div>
   )

@@ -1,3 +1,4 @@
+import MainPageLayout from "./MainPage/MainPageLayout";
 import HeaderComponent from "./HeaderComponent/HeaderComponent";
 import MyAccountDropDown from "./HeaderComponent/MyAccountDropDown";
 import FrontendLayout from "./FrontendLayout/FrontendLayout";
@@ -8,6 +9,7 @@ import RightFiltersComponent from "./MainPage/FiltersRight/RightFiltersComponent
 import CategoryFilterWindow from "./MainPage/FiltersRight/CategoryFilterWindow";
 import SortTopFilterComponent from "./MainPage/SortTopFilter/SortTopFilterComponent";
 export  {
+    MainPageLayout,
     RightFiltersComponent,
     HeaderComponent,
     MyAccountDropDown,
