@@ -1,3 +1,4 @@
+import LeftAccountPageComponent from "./AccountPage/LeftAccountPageComponent";
 import MainPageLayout from "./MainPage/MainPageLayout";
 import HeaderComponent from "./HeaderComponent/HeaderComponent";
 import MyAccountDropDown from "./HeaderComponent/MyAccountDropDown";
@@ -11,7 +12,10 @@ import SortTopFilterComponent from "./MainPage/SortTopFilter/SortTopFilterCompon
 import DisplayCardsComponent from "./ProblemPopUp/DisplayCardsComponent";
 import DisplableCard from "./ProblemPopUp/DisplableCard";
 import StarRatingComponent from "./ProblemPopUp/StarRatingComponent";
+import RightMainFunctionsComponent from "./AccountPage/RightMainFunctionsComponent";
 export  {
+    RightMainFunctionsComponent,
+    LeftAccountPageComponent,
     DisplableCard,
     DisplayCardsComponent,
     MainPageLayout,
