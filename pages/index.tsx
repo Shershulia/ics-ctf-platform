@@ -1,7 +1,8 @@
 import {
     DisplayCardsComponent,
     FrontendLayout,
-    MainPageLayout,
+    LittleCardComponent, MainPageLayout,
+    RightFiltersComponent, SortTopFilterComponent,
 } from "@/components";
 import {IProblem} from "@/ITypes/IProblem";
 
