@@ -12,29 +12,39 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-model Category{
-  id          Int        @id @default(autoincrement())
-  name    String   @unique
-  problems Problem[]
 
-}
-model Difficulty{
-  id          Int        @id @default(autoincrement())
-  name    String   @unique
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
   problems Problem[]
 }
+
+model Difficulty {
+  id       Int       @id @default(autoincrement())
+  name     String    @unique
+  problems Problem[]
+}
+
 model Problem {
-  id          Int        @id @default(autoincrement())
-  title    String   @unique
+  id            Int      @id @default(autoincrement())
+  title         String   @unique
   description   String
-  points Int
+  points        Int
   attached_file String[]
 
   categoryId Int
-  category Category @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
 
   difficultyId Int
-  difficulty Difficulty @relation(fields: [difficultyId], references: [id])
+  difficulty   Difficulty @relation(fields: [difficultyId], references: [id])
 
-  createdAt        DateTime           @default(now())
+  createdAt DateTime   @default(now())
+  solution  Solution?
+}
+
+model Solution {
+  id        Int     @id @default(autoincrement())
+  solution  String
+  problemId Int @unique
+  problem   Problem @relation(fields: [problemId], references: [id])
 }
