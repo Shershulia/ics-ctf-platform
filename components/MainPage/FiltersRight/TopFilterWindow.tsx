@@ -2,10 +2,14 @@ import React, {useState} from 'react';
 import {Checkbox, Input} from "@nextui-org/react";
 import { FaSearch } from "react-icons/fa";
 
-const TopFilterWindow = () => {
+type TopFilterProps = {
+    searchValue?: string,
+    setSearchValue?: (value: string) => void,
+};
+
+const TopFilterWindow = ({searchValue, setSearchValue} : TopFilterProps) => {
     const [hideSolved, setHideSolved] = useState(false);
     const [showSaved, setShowSaved] = useState(false);
-    const [searchValue, setSearchValue] = useState("");
 
     return (
         <div className={"bg-black w-full rounded-md py-4 px-8"}>

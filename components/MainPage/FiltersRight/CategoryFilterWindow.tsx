@@ -4,9 +4,10 @@ import axios, {AxiosResponse} from "axios";
 import {ICategory} from "@/ITypes/ICategory";
 
 type CategoryFilterProps = {
-    categories: string[],
-
+    category?: string,
+    setCategory: (value: string) => void,
 };
+
 export const CustomRadio = (props : any) => {
     const {children, ...otherProps} = props;
 
@@ -28,14 +29,13 @@ export const CustomRadio = (props : any) => {
         </Radio>
     );
 };
-const CategoryFilterWindow = () => {
+const CategoryFilterWindow = ({category, setCategory} : CategoryFilterProps) => {
     //Basic categories
     const [categories, setCategories] = useState(["All categories",
         "Web Exploitation",
         "Cryptography",
         "Forensics","General Skills", "Binary Exploitation"]
     );
-    const [selectedCategory, setSelectedCategory] = useState(categories[0]);
 
     useEffect(() => {
         axios.get("/api/categories")
@@ -56,8 +56,8 @@ const CategoryFilterWindow = () => {
             <p className={"text-white font-bold text-xl text-center mb-2"}>Category filter</p>
             <div className={"flex flex-col justify-center gap-2 w-full"}>
                 <RadioGroup className={"w-full"}
-                            value={selectedCategory}
-                            onValueChange={setSelectedCategory}>
+                            value={category}
+                            onValueChange={setCategory}>
                     {categories.map((category)=>(
                         <CustomRadio value={category} key={category}>
                             {category}</CustomRadio>

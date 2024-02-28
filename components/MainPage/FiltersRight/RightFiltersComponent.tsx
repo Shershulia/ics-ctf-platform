@@ -3,13 +3,21 @@ import {DifficultyLevelWindow, TopFilterWindow, CategoryFilterWindow} from "@/co
 import {prisma} from "@/lib/prisma";
 import {ICategory} from "@/ITypes/ICategory";
 
+type Filters = {
 
-const RightFiltersComponent = () => {
+    searchValue: string,
+    setSearchValue: (value: string) => void,
+    difficulty: string,
+    setDifficulty: (value: string) => void,
+    category: string,
+    setCategory: (value: string) => void,
+};
+const RightFiltersComponent = ({ difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue }: Filters) => {
     return (
         <div className={"flex flex-col justify-center gap-8"}>
-            <TopFilterWindow/>
-            <DifficultyLevelWindow/>
-            <CategoryFilterWindow />
+            <TopFilterWindow searchValue={searchValue} setSearchValue={setSearchValue}/>
+            <DifficultyLevelWindow setDifficulty={setDifficulty} difficulty={difficulty}/>
+            <CategoryFilterWindow setCategory={setCategory} category={category}/>
         </div>
     );
 };
