@@ -16,7 +16,7 @@ const TopFilterWindow = ({searchValue, setSearchValue} : TopFilterProps) => {
             <p className={"text-white font-bold text-xl text-center mb-2"}>Filters</p>
                 <div className={"flex flex-col justify-center gap-2"}>
                 <Checkbox isSelected={hideSolved}
-
+                          aria-label="Checkbox variants"
                           onValueChange={setHideSolved}
                           color="success" size="lg"
                           classNames={{
@@ -44,6 +44,8 @@ const TopFilterWindow = ({searchValue, setSearchValue} : TopFilterProps) => {
                         variant={"bordered"}
                         value={searchValue}
                         onValueChange={setSearchValue}
+                        aria-label="Input variants"
+
                         classNames={{
                             inputWrapper:" border border-success group-data-[focus=true]:border-blue text-white ",
                             label:"text-white text-lg",

@@ -14,6 +14,7 @@ export const CustomRadio = (props : any) => {
     return (
         <Radio
             {...otherProps}
+            aria-label="Radio variants"
             classNames={{
 
                 base: cn(
@@ -58,6 +59,7 @@ const CategoryFilterWindow = ({category, setCategory} : CategoryFilterProps) => 
                 <RadioGroup className={"w-full"}
                             value={category}
                             onValueChange={setCategory}>
+
                     {categories.map((category)=>(
                         <CustomRadio value={category} key={category}>
                             {category}</CustomRadio>

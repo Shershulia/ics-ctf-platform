@@ -18,7 +18,7 @@ export default function Home() {
             <MainPageLayout category={category} setCategory={setCategory}
                             difficulty={difficulty} setDifficulty={setDifficulty}
                             searchValue={searchValue} setSearchValue={setSearchValue}>
-                <DisplayCardsComponent height={"max-h-80"} />
+                <DisplayCardsComponent height={"max-h-80"} category={category} difficulty={difficulty} searchValue={searchValue} />
 
             </MainPageLayout>
         </FrontendLayout>
