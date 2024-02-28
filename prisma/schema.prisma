@@ -35,4 +35,6 @@ model Problem {
 
   difficultyId Int
   difficulty Difficulty @relation(fields: [difficultyId], references: [id])
+
+  createdAt        DateTime           @default(now())
 }

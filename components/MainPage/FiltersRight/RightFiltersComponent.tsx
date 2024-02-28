@@ -7,7 +7,7 @@ const RightFiltersComponent = () => {
             <TopFilterWindow/>
             <DifficultyLevelWindow/>
             <CategoryFilterWindow categories={["All categories",
-                "Web expoitation",
+                "Web Exploitation",
                 "Cryptography",
             "Forensics","General Skills", "Binary Exploitation"]}/>
         </div>
