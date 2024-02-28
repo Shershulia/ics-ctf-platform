@@ -22,12 +22,12 @@ const DisplableCard = ({problem}:PopUpProps) => {
 
             <div className={"flex gap-4"}>
                 <div className={`p-2 
-                         ${(problem.difficulty==="Hard") && "bg-red"}
-                         ${(problem.difficulty==="Medium") && "bg-yellow"}
-                         ${(problem.difficulty==="Easy") && "bg-success"}
+                         ${(problem.difficulty.name==="Hard") && "bg-red"}
+                         ${(problem.difficulty.name==="Medium") && "bg-yellow"}
+                         ${(problem.difficulty.name==="Easy") && "bg-success"}
                          rounded-md text-white font-bold`}>
-                    {problem.difficulty}</div>
-                <div className={"p-2 bg-gray rounded-md"}>{problem.category}</div>
+                    {problem.difficulty.name}</div>
+                <div className={"p-2 bg-gray rounded-md"}>{problem.category.name}</div>
             </div>
 
             <div className={"h-px bg-gray my-4"}/>

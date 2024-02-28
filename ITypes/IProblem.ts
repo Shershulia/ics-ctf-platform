@@ -1,10 +1,13 @@
+import {ICategory} from "@/ITypes/ICategory";
+import {IDifficulty} from "@/ITypes/IDifficulty";
+
 export type IProblem = {
-    _id: string;
+    id: number;
     title: string;
     description: string;
     points: number;
     attached_files?:[string];
-    category:string;
-    difficulty:string;
+    category:ICategory;
+    difficulty:IDifficulty;
     hints?:string[];
 }
