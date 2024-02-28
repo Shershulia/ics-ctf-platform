@@ -12,9 +12,27 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-model User {
-  id       String   @id @default(uuid())
-  email    String   @unique
-  name     String?
-  password String
+model Category{
+  id          Int        @id @default(autoincrement())
+  name    String   @unique
+  problems Problem[]
+
+}
+model Difficulty{
+  id          Int        @id @default(autoincrement())
+  name    String   @unique
+  problems Problem[]
+}
+model Problem {
+  id          Int        @id @default(autoincrement())
+  title    String   @unique
+  description   String
+  points Int
+  attached_file String[]
+
+  categoryId Int
+  category Category @relation(fields: [categoryId], references: [id])
+
+  difficultyId Int
+  difficulty Difficulty @relation(fields: [difficultyId], references: [id])
 }
