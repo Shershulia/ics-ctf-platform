@@ -17,7 +17,7 @@ const DisplayCardsComponent = ({width = "", height = ""} : DisplayCardsProps) =>
 
         });
         console.log(problems);
-    } , [problems]);
+    } , []);
 
     return (
         <div className={"h-full w-full"}>

@@ -2,13 +2,19 @@ import React, {useState} from 'react';
 import {IProblem} from "@/ITypes/IProblem";
 import {Button, Divider, Input, Pagination, ScrollShadow} from "@nextui-org/react";
 import StarRatingComponent from "@/components/ProblemPopUp/StarRatingComponent";
+import axios from "axios";
 type PopUpProps = {
     problem: IProblem,
 };
 const DisplableCard = ({problem}:PopUpProps) => {
     const [currentHint, setCurrentHint] = useState(1);
-    const [searchValue, setSearchValue] = useState("");
+    const [flag, setFlag] = useState("");
 
+    const handleSendFlag = () => {
+        axios.get(`/api/checkSolution?problemId=${problem.id}&solution=${flag}`).then((response) => {
+            alert(response.data.decision);
+        });
+    }
     return (
         <div>
             <div className={"flex justify-between items-center mb-4"}>
@@ -60,8 +66,8 @@ const DisplableCard = ({problem}:PopUpProps) => {
                 <Input
                     label="CTF-{ANSWER  HERE}"
                     variant={"bordered"}
-                    value={searchValue}
-                    onValueChange={setSearchValue}
+                    value={flag}
+                    onValueChange={setFlag}
                     classNames={{
                         inputWrapper:" border border-success group-data-[focus=true]:border-blue text-black ",
                         label:"text-gray text-lg",
@@ -69,7 +75,7 @@ const DisplableCard = ({problem}:PopUpProps) => {
                         input: "text-lg"
                     }}
                 />
-                <Button color="primary" variant="solid" size={"lg"} className={"py-7"}>
+                <Button color="primary" variant="solid" size={"lg"} className={"py-7"} onClick={handleSendFlag}>
                     Send Flag
                 </Button>
             </div>
