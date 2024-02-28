@@ -11,12 +11,10 @@ const DisplayCardsComponent = ({width = "", height = ""} : DisplayCardsProps) =>
     const [problems, setProblems] = useState<IProblem[]>([]);
     useEffect(() => {
         axios.get("/api/problems").then((response: AxiosResponse<{problems:IProblem[]}>) => {
-            console.log(response.data);
             setProblems(response.data.problems);
             setIsLoading(false);
 
         });
-        console.log(problems);
     } , []);
 
     return (
