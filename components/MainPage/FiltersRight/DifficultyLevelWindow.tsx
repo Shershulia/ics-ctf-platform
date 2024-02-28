@@ -1,10 +1,30 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Tabs, Tab} from "@nextui-org/react";
 import {Key} from "@react-types/shared";
+import axios, {AxiosResponse} from "axios";
+import {ICategory} from "@/ITypes/ICategory";
+import {IDifficulty} from "@/ITypes/IDifficulty";
 
 const DifficultyLevelWindow = () => {
-    const [selected, setSelected] = useState("Easy");
+    const [difficulties, setDifficulties] = useState(["All","Easy", "Medium", "Hard"]
+    );
+    const [selected, setSelected] = useState(difficulties[0]);
 
+
+    useEffect(() => {
+        axios.get("/api/difficulties")
+            .then((res: AxiosResponse) => {
+                const { difficulties } = res.data;
+                const sortedCategories = difficulties
+                    .sort((a: IDifficulty, b: IDifficulty) => a.id - b.id)
+                    .map((category: ICategory) => category.name);
+                setDifficulties(["All", ...sortedCategories]);
+                console.log(difficulties)
+            })
+            .catch((error) => {
+                console.error('Error fetching categories:', error.message);
+            });
+    }, []);
     return (
         <div className={"bg-black w-full rounded-md py-4 px-8"}>
             <p className={"text-white font-bold text-xl text-center mb-2"}>Difficulties</p>
@@ -17,9 +37,9 @@ const DifficultyLevelWindow = () => {
                        classNames={{
                            tabList: "border-success",
                        }}>
-                    <Tab key="Easy" title="Easy"/>
-                    <Tab key="Medium" title="Medium"/>
-                    <Tab key="Hard" title="Hard"/>
+                     {difficulties.map((difficulty) => (
+                         <Tab key={difficulty} title={difficulty}/>
+                     ))}
                 </Tabs>
             </div>
         </div>
