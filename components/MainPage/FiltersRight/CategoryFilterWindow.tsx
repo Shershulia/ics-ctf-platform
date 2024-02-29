@@ -4,8 +4,8 @@ import axios, {AxiosResponse} from "axios";
 import {ICategory} from "@/ITypes/ICategory";
 
 type CategoryFilterProps = {
-    category?: string,
-    setCategory: (value: string) => void,
+    category?: number,
+    setCategory: (value: number) => void,
 };
 
 export const CustomRadio = (props : any) => {
@@ -32,20 +32,23 @@ export const CustomRadio = (props : any) => {
 };
 const CategoryFilterWindow = ({category, setCategory} : CategoryFilterProps) => {
     //Basic categories
-    const [categories, setCategories] = useState(["All categories",
-        "Web Exploitation",
-        "Cryptography",
-        "Forensics","General Skills", "Binary Exploitation"]
-    );
+    const allCategory : ICategory = {
+        id: 0,
+        name: "All categories"
+    }
+    const [categories, setCategories] = useState<ICategory[]>([allCategory]);
+
+
+
 
     useEffect(() => {
         axios.get("/api/categories")
             .then((res: AxiosResponse) => {
                 const { categories } = res.data;
                 const sortedCategories = categories
-                    .sort((a: ICategory, b: ICategory) => a.id - b.id)
-                    .map((category: ICategory) => category.name);
-                setCategories(["All categories", ...sortedCategories]);
+                    .sort((a: ICategory, b: ICategory) => a.id - b.id);
+                setCategories([allCategory, ...sortedCategories]);
+                console.log("Categories fetched:", categories)
             })
             .catch((error) => {
                 console.error('Error fetching categories:', error.message);
@@ -57,12 +60,14 @@ const CategoryFilterWindow = ({category, setCategory} : CategoryFilterProps) => 
             <p className={"text-white font-bold text-xl text-center mb-2"}>Category filter</p>
             <div className={"flex flex-col justify-center gap-2 w-full"}>
                 <RadioGroup className={"w-full"}
-                            value={category}
+                            // @ts-ignore
+                            value={category as number}
+                            // @ts-ignore
                             onValueChange={setCategory}>
 
                     {categories.map((category)=>(
-                        <CustomRadio value={category} key={category}>
-                            {category}</CustomRadio>
+                        <CustomRadio value={category.id} key={category.id}>
+                            {category.name}</CustomRadio>
                         )
                     )}
                 </RadioGroup>

@@ -9,8 +9,8 @@ type Filters = {
     setSearchValue: (value: string) => void,
     difficulty: string,
     setDifficulty: (value: string) => void,
-    category: string,
-    setCategory: (value: string) => void,
+    category: number,
+    setCategory: (value: number) => void,
 };
 const RightFiltersComponent = ({ difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue }: Filters) => {
     return (

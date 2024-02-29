@@ -5,7 +5,7 @@ import axios, {AxiosResponse} from "axios";
 type DisplayCardsProps = {
     width?:string,
     height?:string,
-    category?: string,
+    category?: number,
     difficulty?: string,
     searchValue?: string,
 };
@@ -13,10 +13,10 @@ const DisplayCardsComponent = ({width = "", height = "", difficulty , searchValu
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [problems, setProblems] = useState<IProblem[]>([]);
     useEffect(() => {
-        axios.get("/api/problems").then((response: AxiosResponse<{problems:IProblem[]}>) => {
+        setIsLoading(true);
+        axios.get(`/api/problems?search=${searchValue}&category=${category}&difficulty=${difficulty}`).then((response: AxiosResponse<{problems:IProblem[]}>) => {
             setProblems(response.data.problems);
             setIsLoading(false);
-            console.log(difficulty, searchValue, category);
         });
     } , [difficulty,searchValue,category]);
 
