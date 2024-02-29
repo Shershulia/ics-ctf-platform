@@ -16,19 +16,19 @@ const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProp
             <div className={`bg-white border p-4 border-2 rounded-md 
         overflow-hidden flex flex-col justify-between cursor-pointer ${width} ${height}` } onClick={onOpen}>
                 <div className={"flex justify-between items-center"}>
-                    <p>{problem.category}</p>
+                    <p>{problem.category.name}</p>
                     <p>{problem.points} pts.</p>
                 </div>
                 <p className={"text-xl font-bold truncate"}>{problem.title}</p>
-                <p className={"text-ellipsis  overflow-hidden max-h-28"}>{problem.description}</p>
+                <p className={"text-ellipsis  overflow-hidden h-28"}>{problem.description}</p>
                 <div className={"flex justify-between items-center"}>
                     <p className={`
                 
-                ${(problem.difficulty==="Hard") && "text-red"}
-                ${(problem.difficulty==="Medium") && "text-yellow"}
-                ${(problem.difficulty==="Easy") && "text-success"}
+                ${(problem.difficulty.name==="Hard") && "text-red"}
+                ${(problem.difficulty.name==="Medium") && "text-yellow"}
+                ${(problem.difficulty.name==="Easy") && "text-success"}
                 font-bold
-                `}>{problem.difficulty}</p>
+                `}>{problem.difficulty.name}</p>
                 </div>
             </div>
 

@@ -1,28 +1,48 @@
 import {
     DisplayCardsComponent,
-    FrontendLayout,
-    LittleCardComponent, MainPageLayout,
-    RightFiltersComponent, SortTopFilterComponent,
+    FrontendLayout,MainPageLayout,
+
 } from "@/components";
 import {IProblem} from "@/ITypes/IProblem";
+import {useEffect, useState} from "react";
+import axios, {AxiosResponse} from "axios";
 
-const exampleCard : IProblem = {
-    _id: "123",
-    title: "Name of problem aaaaaaaaaaaaaaaaaaa",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    points: 30,
-    category:"General Skills",
-    difficulty:"Hard",
-    hints:["Here is a hint", "Here is a hint 2"],
-}
-const cards : IProblem[] = Array.from({ length: 9 }, () => ({ ...exampleCard }));
 export default function Home() {
-  return (
+    const [searchValue, setSearchValue] = useState("");
+    const [difficulty, setDifficulty] = useState(0);
+    const [category, setCategory] = useState(0);
+
+    const [page, setPage] = useState(1);
+    const [totalProblems, setTotalProblems] = useState(0);
+
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [problems, setProblems] = useState<IProblem[]>([]);
+
+    useEffect(() => {
+        axios.get("/api/problems/total")
+            .then((response: AxiosResponse<{totalProblems: number}>) => {
+                setTotalProblems(response.data.totalProblems);
+                console.log(response.data.totalProblems);
+            });
+    }   , []);
+    useEffect(() => {
+        setIsLoading(true);
+        axios.get(`/api/problems?search=${searchValue}&category=${category}&difficulty=${difficulty}&page=${page}`)
+            .then((response: AxiosResponse<{problems:IProblem[]}>) => {
+                setProblems(response.data.problems);
+                setIsLoading(false);
+
+
+            });
+    } , [difficulty,searchValue,category,page]);
+    return (
       <div>
         <FrontendLayout>
-            <MainPageLayout>
-
-                <DisplayCardsComponent problems={cards} height={"max-h-80"} />
+            <MainPageLayout category={category} setCategory={setCategory}
+                            difficulty={difficulty} setDifficulty={setDifficulty}
+                            searchValue={searchValue} setSearchValue={setSearchValue}
+                            setPage={setPage} page={page} totalProblems={totalProblems}>
+                <DisplayCardsComponent height={"max-h-80"} isLoading={isLoading} problems={problems}  />
 
             </MainPageLayout>
         </FrontendLayout>
