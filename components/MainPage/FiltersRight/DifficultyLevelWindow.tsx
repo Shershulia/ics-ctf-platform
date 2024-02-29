@@ -5,12 +5,17 @@ import axios, {AxiosResponse} from "axios";
 import {ICategory} from "@/ITypes/ICategory";
 import {IDifficulty} from "@/ITypes/IDifficulty";
 type DifficultyLevelWindowProps = {
-    difficulty?: string,
-    setDifficulty: (value: string) => void,
+    difficulty?: number,
+    setDifficulty: (value: number) => void,
 };
 
 const DifficultyLevelWindow = ({difficulty,setDifficulty}: DifficultyLevelWindowProps) => {
-    const [difficulties, setDifficulties] = useState(["All","Easy", "Medium", "Hard"]
+    //Basic categories
+    const allDifficulties : IDifficulty = {
+        id: 0,
+        name: "All"
+    }
+    const [difficulties, setDifficulties] = useState([allDifficulties]
     );
 
 
@@ -20,9 +25,7 @@ const DifficultyLevelWindow = ({difficulty,setDifficulty}: DifficultyLevelWindow
                 const { difficulties } = res.data;
                 const sortedCategories = difficulties
                     .sort((a: IDifficulty, b: IDifficulty) => a.id - b.id)
-                    .map((category: ICategory) => category.name);
-                setDifficulties(["All", ...sortedCategories]);
-                console.log(difficulties)
+                setDifficulties([allDifficulties, ...sortedCategories]);
             })
             .catch((error) => {
                 console.error('Error fetching categories:', error.message);
@@ -35,13 +38,14 @@ const DifficultyLevelWindow = ({difficulty,setDifficulty}: DifficultyLevelWindow
                  <Tabs fullWidth={true}
                             variant={"bordered"}
                             selectedKey={difficulty}
+                            // @ts-ignore
                             onSelectionChange={(message : Key) =>  setDifficulty(String(message))}
                             aria-label="Tabs variants"
                        classNames={{
                            tabList: "border-success",
                        }}>
                      {difficulties.map((difficulty) => (
-                         <Tab key={difficulty} title={difficulty}/>
+                         <Tab key={difficulty.id} title={difficulty.name} aria-label="Tab variants"/>
                      ))}
                 </Tabs>
             </div>

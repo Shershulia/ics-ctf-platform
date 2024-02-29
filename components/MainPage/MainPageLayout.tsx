@@ -4,8 +4,8 @@ type MainPageLayoutProps = {
     children?: React.ReactNode,
     searchValue: string,
     setSearchValue: (value: string) => void,
-    difficulty: string,
-    setDifficulty: (value: string) => void,
+    difficulty: number,
+    setDifficulty: (value: number) => void,
     category: number,
     setCategory: (value: number) => void,
 };

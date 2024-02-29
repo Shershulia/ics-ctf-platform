@@ -20,8 +20,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             if (category && category.toString() !== "0") {
                 whereClause.categoryId = parseInt(category.toString());
             }
-            if (difficulty!="All") {
-                whereClause.difficulty = difficulty;
+            if (difficulty && difficulty.toString() !== "0") {
+                whereClause.difficultyId = parseInt(difficulty.toString());
             }
 
             const problems = await prisma.problem.findMany({

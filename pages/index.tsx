@@ -9,7 +9,7 @@ import {useState} from "react";
 
 export default function Home() {
     const [searchValue, setSearchValue] = useState("");
-    const [difficulty, setDifficulty] = useState("All");
+    const [difficulty, setDifficulty] = useState(0);
     const [category, setCategory] = useState(0);
 
   return (

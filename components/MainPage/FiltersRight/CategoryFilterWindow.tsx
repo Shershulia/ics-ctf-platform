@@ -66,7 +66,7 @@ const CategoryFilterWindow = ({category, setCategory} : CategoryFilterProps) => 
                             onValueChange={setCategory}>
 
                     {categories.map((category)=>(
-                        <CustomRadio value={category.id} key={category.id}>
+                        <CustomRadio value={category.id} key={category.id} aria-label="Category variants">
                             {category.name}</CustomRadio>
                         )
                     )}

@@ -6,7 +6,7 @@ type DisplayCardsProps = {
     width?:string,
     height?:string,
     category?: number,
-    difficulty?: string,
+    difficulty?: number,
     searchValue?: string,
 };
 const DisplayCardsComponent = ({width = "", height = "", difficulty , searchValue , category} : DisplayCardsProps) => {
