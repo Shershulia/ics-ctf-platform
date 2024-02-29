@@ -3,13 +3,15 @@ import {RightFiltersComponent, SortTopFilterComponent} from "@/components";
 type MainPageLayoutProps = {
     children?: React.ReactNode,
     searchValue: string,
+    page: number,
+    setPage: (value: number) => void,
     setSearchValue: (value: string) => void,
     difficulty: number,
     setDifficulty: (value: number) => void,
     category: number,
     setCategory: (value: number) => void,
 };
-const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue }: MainPageLayoutProps) => {
+const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue, setPage, page }: MainPageLayoutProps) => {
     return (
         <div className={"flex gap-[100px]"}>
             <div className={"w-1/3"}>
@@ -19,7 +21,9 @@ const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , ca
                 />
             </div>
             <div className={"flex flex-col w-full gap-[50px]"}>
-                <SortTopFilterComponent/>
+                <SortTopFilterComponent setPage={setPage}
+                                        page={page}
+                />
                 <div className={"w-full h-full"}>
                     {children}
                 </div>

@@ -8,17 +8,21 @@ type DisplayCardsProps = {
     category?: number,
     difficulty?: number,
     searchValue?: string,
+    page?: number
 };
-const DisplayCardsComponent = ({width = "", height = "", difficulty , searchValue , category} : DisplayCardsProps) => {
+const DisplayCardsComponent = ({width = "", height = "", difficulty , searchValue , category,page} : DisplayCardsProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [problems, setProblems] = useState<IProblem[]>([]);
     useEffect(() => {
         setIsLoading(true);
-        axios.get(`/api/problems?search=${searchValue}&category=${category}&difficulty=${difficulty}`).then((response: AxiosResponse<{problems:IProblem[]}>) => {
+        axios.get(`/api/problems?search=${searchValue}&category=${category}&difficulty=${difficulty}&page=${page}`)
+            .then((response: AxiosResponse<{problems:IProblem[]}>) => {
             setProblems(response.data.problems);
             setIsLoading(false);
+
+
         });
-    } , [difficulty,searchValue,category]);
+    } , [difficulty,searchValue,category,page]);
 
     return (
         <div className={"h-full w-full"}>

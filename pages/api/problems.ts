@@ -8,8 +8,8 @@ type Data = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     try {
         if (req.method === 'GET') {
-            const { search, category , difficulty } = req.query;
-
+            const { search, category , difficulty, page } = req.query;
+            console.log(page)
             let whereClause: any = {};
             if (search) {
                 whereClause.title =
@@ -24,12 +24,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
                 whereClause.difficultyId = parseInt(difficulty.toString());
             }
 
+            // Calculate skip and take for pagination
+            const pageNumber = page ? parseInt(page.toString()) : 1;
+            const take = 9;
+            const skip = (pageNumber - 1) * take;
+
             const problems = await prisma.problem.findMany({
                 include: {
                     category: true,
                     difficulty: true,
                 },
                 where: whereClause,
+                skip: skip,
+                take: take,
             });
 
             res.status(200).json({ problems: problems });
