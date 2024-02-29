@@ -5,24 +5,11 @@ import axios, {AxiosResponse} from "axios";
 type DisplayCardsProps = {
     width?:string,
     height?:string,
-    category?: number,
-    difficulty?: number,
-    searchValue?: string,
-    page?: number
+    isLoading:boolean,
+    problems:IProblem[]
 };
-const DisplayCardsComponent = ({width = "", height = "", difficulty , searchValue , category,page} : DisplayCardsProps) => {
-    const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [problems, setProblems] = useState<IProblem[]>([]);
-    useEffect(() => {
-        setIsLoading(true);
-        axios.get(`/api/problems?search=${searchValue}&category=${category}&difficulty=${difficulty}&page=${page}`)
-            .then((response: AxiosResponse<{problems:IProblem[]}>) => {
-            setProblems(response.data.problems);
-            setIsLoading(false);
+const DisplayCardsComponent = ({width = "", height = "", isLoading,problems} : DisplayCardsProps) => {
 
-
-        });
-    } , [difficulty,searchValue,category,page]);
 
     return (
         <div className={"h-full w-full"}>

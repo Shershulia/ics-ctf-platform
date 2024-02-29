@@ -4,6 +4,7 @@ type MainPageLayoutProps = {
     children?: React.ReactNode,
     searchValue: string,
     page: number,
+    totalProblems: number,
     setPage: (value: number) => void,
     setSearchValue: (value: string) => void,
     difficulty: number,
@@ -11,7 +12,7 @@ type MainPageLayoutProps = {
     category: number,
     setCategory: (value: number) => void,
 };
-const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue, setPage, page }: MainPageLayoutProps) => {
+const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue, setPage, page, totalProblems }: MainPageLayoutProps) => {
     return (
         <div className={"flex gap-[100px]"}>
             <div className={"w-1/3"}>
@@ -23,6 +24,7 @@ const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , ca
             <div className={"flex flex-col w-full gap-[50px]"}>
                 <SortTopFilterComponent setPage={setPage}
                                         page={page}
+                                        totalProblems={totalProblems}
                 />
                 <div className={"w-full h-full"}>
                     {children}
