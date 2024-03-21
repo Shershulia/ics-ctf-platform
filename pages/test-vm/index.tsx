@@ -1,9 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect, useRef, ChangeEvent} from 'react';
+import axios from "axios";
+import {Select, SelectItem} from "@nextui-org/react";
+import {prisma} from "@/lib/prisma";
+type TerminalVMPageProps = {
+    problemsFromBack: number[];
+};
 
-const TerminalVMPage = () => {
+const TerminalVMPage = ({problemsFromBack} : TerminalVMPageProps) => {
+    const [problem, setProblem] = useState(problemsFromBack[0]);
+
     const [command, setCommand] = useState<string>('');
     const [history, setHistory] = useState<string[]>([]);
     const inputRef = useRef<HTMLInputElement>(null); // For managing focus
+
+
+
 
     useEffect(() => {
         const focusInput = (event: MouseEvent) => {
@@ -27,11 +38,19 @@ const TerminalVMPage = () => {
         if (event.key === 'Enter') {
             // Simulating an API call
             // Note: Replace this with your actual fetch request
-            const data = { output: 'Simulated response for ' + command }; // Assuming response has an 'output' property
-
+            const data : { output: string; error?: string; } = await axios.post("/api/test-vm",
+                {command:  command.trim(), id:problem})
+                .then((response) => {
+                    console.log(response.data);
+                    return response.data;
+                })
+                .catch((error) => {
+                    console.log(error.response.data.error)
+                    return {output: error.response.data.error};
+             });
             // Update command history
-            setHistory((prevHistory) => [...prevHistory, `$ ${command}`, data.output]);
-            setCommand('');
+            setHistory((prevHistory) => [...prevHistory, `${command}`, data.output]);
+            setCommand(' ');
 
             // Keep the input focused after submitting a command
             event.preventDefault();
@@ -39,8 +58,37 @@ const TerminalVMPage = () => {
         }
     };
 
+    const handleSelectionChange = (e : ChangeEvent<HTMLSelectElement>) => {
+        console.log(e.target.value)
+        // @ts-ignore
+        setProblem(e.target.value);
+    };
     return (
         <div className="bg-black min-h-screen text-white font-mono">
+
+            <div className={"flex justify-center items-center"}>
+                <p className="text-xl text-white truncate m-2 w-1/12">Opg # </p>
+                <Select
+                    variant="flat"
+                    selectedKeys={[problem]}
+                    classNames={{
+                        label: "group-data-[filled=true]:-translate-y-5 text-primary",
+                        trigger: " border-2 border-primary rounded-2xl bg-black text-primary",
+                        listboxWrapper: "max-h-[400px]",
+                        value:"text-primary group-data-[has-value=true]:text-primary",
+                        mainWrapper: "w-[150px] bg-black mt-4",
+                    }}
+                    color={"default"}
+                    onChange={(event)=>{handleSelectionChange(event)} }
+                >
+                    {problemsFromBack.map((problem) => (
+                        <SelectItem key={problem} value={problem}>
+                            {problem}
+                        </SelectItem>
+                    ))}
+                </Select>
+            </div>
+
             <div className="p-4">
                 {history.map((line, index) => (
                     <div key={index} className="text-green-500">{line}</div>
@@ -58,3 +106,12 @@ const TerminalVMPage = () => {
 };
 
 export default TerminalVMPage;
+export async function getServerSideProps() {
+    const problems = await prisma.problem.findMany();
+
+    return {
+        props: {
+            problemsFromBack: JSON.parse(JSON.stringify(problems.map((problem) => (problem.id.toString())))),
+        }
+    };
+    };
