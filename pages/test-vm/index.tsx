@@ -50,7 +50,7 @@ const TerminalVMPage = ({problemsFromBack} : TerminalVMPageProps) => {
              });
             // Update command history
             setHistory((prevHistory) => [...prevHistory, `${command}`, data.output]);
-            setCommand(' ');
+            setCommand('');
 
             // Keep the input focused after submitting a command
             event.preventDefault();

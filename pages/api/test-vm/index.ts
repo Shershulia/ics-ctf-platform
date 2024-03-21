@@ -9,12 +9,16 @@ type Data = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     try {
         if (req.method === 'POST') {
-            const { command, id } = req.body;
+            let { command, id } = req.body;
+
+            // if (command.includes("apt install")) {
+            //    command = `echo 'y' | ${command}`;
+            // }
 
             // ВАЖНО: валидация и санитизация команды перед выполнением
             // Этот пример не включает меры безопасности
 
-            exec(`docker exec -w /ctf-ics/obedient_cat next-ctf-platform-test-vm-1 ${command}`, (error, stdout, stderr) => {
+            exec(`docker exec -w /ctf-ics/opg${id} -u root next-ctf-platform-test-vm-1 ${command}`, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`exec error: ${error}`);
                     return res.status(500).json({ error: 'Error executing command' });
