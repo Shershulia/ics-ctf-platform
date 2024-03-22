@@ -9,7 +9,6 @@
     "lint": "next lint",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "prisma db seed",
-
     "test": "jest",
     "test:watch": "jest --watch",
 
@@ -18,9 +17,8 @@
     "prisma:test:deploy": "dotenv -e .env.test -- prisma migrate deploy",
     "db:test:restart": "npm run db:test:rm && npm run db:test:up && node -e \"setTimeout(() => {}, 3000)\" && npm run prisma:test:deploy",
 
-    "pretest:e2e": "npm run db:test:restart",
+    "pretest:db": "npm run db:test:restart",
     "test:db": "dotenv -e .env.test -- jest --watch --no-cache"
-
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -29,6 +27,7 @@
     "@nextui-org/react": "^2.2.9",
     "@prisma/client": "^5.10.2",
     "axios": "^1.6.7",
+    "dotenv-cli": "^7.4.1",
     "framer-motion": "^11.0.5",
     "next": "13.5.4",
     "react": "^18",
