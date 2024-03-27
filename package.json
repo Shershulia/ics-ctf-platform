@@ -16,7 +16,6 @@
     "db:test:restart": "npm run db:test:rm && npm run db:test:up && node -e \"setTimeout(() => {}, 3000)\" && npm run prisma:test:deploy",
     "pretest:db": "npm run db:test:restart",
     "test:db": "jest --watch --no-cache"
-
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -27,6 +26,7 @@
     "axios": "^1.6.7",
     "framer-motion": "^11.0.5",
     "next": "13.5.4",
+    "next-cookies": "^2.0.3",
     "pactum": "^3.6.3",
     "react": "^18",
     "react-dom": "^18",
