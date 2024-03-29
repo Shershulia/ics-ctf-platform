@@ -11,12 +11,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         if (req.method === 'POST') {
             let { command, id } = req.body;
 
-            // if (command.includes("apt install")) {
-            //    command = `echo 'y' | ${command}`;
-            // }
-
-            // ВАЖНО: валидация и санитизация команды перед выполнением
-            // Этот пример не включает меры безопасности
 
             exec(`docker exec -w /ctf-ics/opg${id} -u root next-ctf-platform-test-vm-1 ${command}`, (error, stdout, stderr) => {
                 if (error) {

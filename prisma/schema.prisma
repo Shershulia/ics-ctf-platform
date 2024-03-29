@@ -32,6 +32,8 @@ model Problem {
   points        Int
   attached_file String[]
   hints String[]
+  isInTerminal Boolean @default(false)
+
 
   categoryId Int
   category   Category @relation(fields: [categoryId], references: [id])
