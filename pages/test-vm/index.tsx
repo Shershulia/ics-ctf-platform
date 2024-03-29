@@ -107,7 +107,11 @@ const TerminalVMPage = ({problemsFromBack} : TerminalVMPageProps) => {
 
 export default TerminalVMPage;
 export async function getServerSideProps() {
-    const problems = await prisma.problem.findMany();
+    const problems = await prisma.problem.findMany({
+        where: {
+            isInTerminal: true,
+        },
+    });
 
     return {
         props: {

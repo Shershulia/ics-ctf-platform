@@ -6,6 +6,7 @@ export type IProblem = {
     title: string;
     description: string;
     points: number;
+    isInTerminal:boolean;
     attached_files?:[string];
     category:ICategory;
     difficulty:IDifficulty;
