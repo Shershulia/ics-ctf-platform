@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Divider, Input} from "@nextui-org/react";
-import axios from "axios";
 import {cookieProblemUtil} from "@/pages/problems/cookie-problem/cookieProblemUtil";
-import { useRouter } from 'next/router';
 
 const CookieProblemPage = () => {
     const [value, setValue] = useState("");
