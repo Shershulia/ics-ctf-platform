@@ -13,7 +13,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "typeRoots": ["../node_modules/@types", "./node_modules/@types", "../node_modules/@testing-library"],
+    "types": ["jest", "jest-dom"],
     "paths": {
       "@/components/*": ["components/*"],
       "@/pages/*": ["pages/*"],
