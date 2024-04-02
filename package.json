@@ -16,7 +16,6 @@
     "db:test:restart": "npm run db:test:rm && npm run db:test:up && node -e \"setTimeout(() => {}, 3000)\" && npm run prisma:test:deploy",
     "pretest:db": "npm run db:test:restart",
     "test:db": "jest --watch --no-cache"
-
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -38,6 +37,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/testing-library__jest-dom": "^6.0.0",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.4",
