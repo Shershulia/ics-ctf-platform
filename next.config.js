@@ -7,7 +7,7 @@ const nextConfig = {
   async rewrites () {
     return [
       {
-        source: '/problem/xss-problem',
+        source: '/problems/xss-problem',
         destination: '/html/xss-problem/xss-problem.html'
       }
     ]
