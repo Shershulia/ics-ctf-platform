@@ -35,9 +35,13 @@ const DisplableCard = ({problem}:PopUpProps) => {
         <div>
             <div className={"flex justify-between items-center mb-4"}>
                 <p className={"font-bold truncate text-2xl w-2/3"}>{problem.id}. {problem.title}</p>
-                <div className={"flex gap-2"}>
-                    <p>Not solved</p>
-                    <div className={"w-px bg-black"}/>
+                <div className={"flex gap-2 justify-center items-center"}>
+                    {localStorage.getItem(`solved`) !== null && JSON.parse(localStorage.getItem(`solved`) || '[]').includes(problem.id) ?
+                        (<p className={"p-1 bg-lime-600 rounded-md text-white"}>Solved</p>) :
+                        (<p className={"p-1 bg-red rounded-md text-white"}>Not solved</p>)
+                    }
+
+                    <p className={"font-bold"}>|</p>
                     <p className={"font-bold"}>{problem.points} pts.</p>
                 </div>
             </div>
