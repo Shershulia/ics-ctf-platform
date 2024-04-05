@@ -12,7 +12,23 @@ const DisplableCard = ({problem}:PopUpProps) => {
 
     const handleSendFlag = () => {
         axios.get(`/api/checkSolution?problemId=${problem.id}&solution=${flag}`).then((response) => {
-            alert(response.data.decision);
+            if (response.data.decision){
+                const solved = localStorage.getItem(`solved`);
+                if(solved){
+                    let solvedArray = JSON.parse(solved);
+                    let newSolvedArray = [...solvedArray, problem.id];
+                    if(newSolvedArray.includes(problem.id)){
+                        alert("You have already solved this problem")
+                    }else {
+                        localStorage.setItem(`solved`, JSON.stringify(newSolvedArray));
+                        alert("Good job! You have solved the problem");
+                    }
+                }else{
+                    let newSolvedArray = [problem.id];
+                    localStorage.setItem(`solved`, JSON.stringify(newSolvedArray));
+                    alert("Good job! You have solved the problem");
+                }
+            }
         });
     }
     return (
