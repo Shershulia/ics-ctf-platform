@@ -18,7 +18,7 @@ const DisplableCard = ({problem}:PopUpProps) => {
     return (
         <div>
             <div className={"flex justify-between items-center mb-4"}>
-                <p className={"font-bold truncate text-2xl w-2/3"}>{problem.title}</p>
+                <p className={"font-bold truncate text-2xl w-2/3"}>{problem.id}. {problem.title}</p>
                 <div className={"flex gap-2"}>
                     <p>Not solved</p>
                     <div className={"w-px bg-black"}/>
@@ -46,7 +46,7 @@ const DisplableCard = ({problem}:PopUpProps) => {
                         <p className={"my-4"}>{problem.description}</p>
                     </ScrollShadow>
                 </div>
-                {problem.hints && (<div className={"w-2/5  flex flex-col justify-start items-center"}>
+                {problem.hints && (<div className={"w-2/5  flex flex-col justify-start items-center text-center text-sm ml-2"}>
                     <p className={"font-bold text-2xl mb-4"}>Hints</p>
                         <Pagination
                             total={problem.hints?.length}
