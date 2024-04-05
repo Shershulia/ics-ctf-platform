@@ -5,10 +5,19 @@ import StarRatingComponent from "@/components/ProblemPopUp/StarRatingComponent";
 import axios from "axios";
 type PopUpProps = {
     problem: IProblem,
+    onClose?: () => void ,
 };
-const DisplableCard = ({problem}:PopUpProps) => {
+const DisplableCard = ({problem, onClose}:PopUpProps) => {
     const [currentHint, setCurrentHint] = useState(1);
     const [flag, setFlag] = useState("");
+
+
+    const closeWindow = (message:string) => {
+        if (onClose) {
+            onClose()
+        }
+        alert(message)
+    }
 
     const handleSendFlag = () => {
         axios.get(`/api/checkSolution?problemId=${problem.id}&solution=${flag}`).then((response) => {
@@ -18,22 +27,24 @@ const DisplableCard = ({problem}:PopUpProps) => {
                     let solvedArray = JSON.parse(solved);
                     let newSolvedArray = [...solvedArray, problem.id];
                     if(newSolvedArray.includes(problem.id)){
-                        alert("You have already solved this problem")
+                        closeWindow("You have already solved this problem")
                     }else {
                         localStorage.setItem(`solved`, JSON.stringify(newSolvedArray));
-                        alert("Good job! You have solved the problem");
+                        closeWindow("Good job! You have solved the problem")
                     }
                 }else{
                     let newSolvedArray = [problem.id];
                     localStorage.setItem(`solved`, JSON.stringify(newSolvedArray));
-                    alert("Good job! You have solved the problem");
+                    closeWindow("Good job! You have solved the problem")
                 }
+            }else {
+                alert("Wrong flag! Try again")
             }
         });
     }
     return (
         <div>
-            <div className={"flex justify-between items-center mb-4"}>
+            <div className={`flex justify-between items-center mb-4`}>
                 <p className={"font-bold truncate text-2xl w-2/3"}>{problem.id}. {problem.title}</p>
                 <div className={"flex gap-2 justify-center items-center"}>
                     {localStorage.getItem(`solved`) !== null && JSON.parse(localStorage.getItem(`solved`) || '[]').includes(problem.id) ?
