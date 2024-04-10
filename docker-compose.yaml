@@ -1,11 +1,11 @@
 #docker-compose run test-vm
 services:
   db:
-    container_name: db
-    image: postgres:alpine
-    restart: always
+    image: postgres:13
     environment:
-      POSTGRES_HOST_AUTH_METHOD: "trust"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ics-ctf-db
     ports:
       - 5432:5432
     volumes:

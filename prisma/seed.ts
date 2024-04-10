@@ -1,24 +1,42 @@
-// ///Runs after updates migrations
-// import { PrismaClient } from '@prisma/client'
-//
-// const prisma = new PrismaClient()
-//
-// async function main() {
-//     const user = await prisma.user.upsert({
-//         where: { email: 'test@test.com' },
-//         update: {},
-//         create: {
-//             email: 'test@test.com',
-//             name: 'Test User',
-//             password: `$2y$12$GBfcgD6XwaMferSOdYGiduw3Awuo95QAPhxFE0oNJ.Ds8qj3pzEZy` //password
-//         },
-//     })
-//     console.log({ user })
-// }
-// main()
-//     .then(() => prisma.$disconnect())
-//     .catch(async (e) => {
-//         console.error(e)
-//         await prisma.$disconnect()
-//         process.exit(1)
-//     })
+// seed.ts
+
+const { PrismaClient } = require("@prisma/client");
+const Categories = require('./data/categories');
+const Difficulties = require('./data/difficulties');
+
+const prisma = new PrismaClient();
+
+async function runSeeders() {
+    // Categories
+    await Promise.all(
+        Difficulties.map(async (difficulty : any) =>
+            prisma.difficulty.upsert({
+                where : { name: difficulty.name },
+                update: {},
+                create: difficulty,
+            })
+        )
+    );
+
+    // Difficulties
+    await Promise.all(
+        Categories.map(async (category : any) =>
+            prisma.category.upsert({
+                where : { name: category.name },
+                update: {},
+                create: category,
+            })
+        )
+    );
+
+}
+
+runSeeders()
+    .catch((e) => {
+        console.error(`There was an error while seeding: ${e}`);
+        process.exit(1);
+    })
+    .finally(async () => {
+        console.log('Successfully seeded database. Closing connection.');
+        await prisma.$disconnect();
+    });
