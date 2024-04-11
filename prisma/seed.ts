@@ -3,6 +3,8 @@
 const { PrismaClient } = require("@prisma/client");
 const Categories = require('./data/categories');
 const Difficulties = require('./data/difficulties');
+const Solutions = require('./data/solutions');
+const Problems = require('./data/problems');
 
 const prisma = new PrismaClient();
 
@@ -28,6 +30,41 @@ async function runSeeders() {
             })
         )
     );
+
+    // Problems
+    await Promise.all(
+        Problems.map(async (problem : any) =>
+            prisma.problem.upsert({
+                where : { title: problem.title },
+                update: {},
+                create: {
+                    title: problem.title,
+                    description: problem.description,
+                    points: problem.points,
+                    attached_file: problem.attached_file,
+                    hints: problem.hints,
+                    isInTerminal: problem.isInTerminal,
+                    category: { connect: { id: problem.categoryId } }, // Provide categoryId to connect to existing category
+                    difficulty : { connect: { id: problem.difficultyId } },
+                },
+            })
+        )
+    );
+
+    // Solutions
+    await Promise.all(
+        Solutions.map(async (solution : any) =>
+            prisma.solution.upsert({
+                where: { problemId: solution.problemId }, // Use problemId to uniquely identify the solution
+                update: {},
+                create: {
+                    solution: solution.solution,
+                    problem: { connect: { id: solution.problemId } }, // Connect the solution to the problem
+                },
+            })
+        )
+    );
+
 
 }
 
