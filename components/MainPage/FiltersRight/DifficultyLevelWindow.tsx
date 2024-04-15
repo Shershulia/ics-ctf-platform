@@ -6,10 +6,10 @@ import {ICategory} from "@/ITypes/ICategory";
 import {IDifficulty} from "@/ITypes/IDifficulty";
 type DifficultyLevelWindowProps = {
     difficulty?: number,
-    setDifficulty: (value: number) => void,
+    setDifficulty?: (value: number) => void,
 };
 
-const DifficultyLevelWindow = ({difficulty,setDifficulty}: DifficultyLevelWindowProps) => {
+const DifficultyLevelWindow = ({difficulty,setDifficulty = ()=>{}}: DifficultyLevelWindowProps) => {
     //Basic categories
     const allDifficulties : IDifficulty = {
         id: 0,

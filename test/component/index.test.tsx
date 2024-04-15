@@ -26,7 +26,7 @@ describe("Main Page", () => {
 
 
 
-    describe("filters",  () => {
+    describe("filters window test",  () => {
         render(<TopFilterWindow />);
 
         it("should be in the link", async () => {
@@ -54,4 +54,5 @@ describe("Main Page", () => {
         });
 
     });
+
 });
