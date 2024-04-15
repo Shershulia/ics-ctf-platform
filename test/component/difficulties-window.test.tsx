@@ -7,7 +7,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 describe('DifficultyLevelWindow Component', () => {
 
-        it('renders title correctly', async () => {
+    it('renders title correctly', async () => {
             render(<DifficultyLevelWindow />);
             expect(screen.getByText('Difficulties')).toBeDefined();
     });
@@ -17,10 +17,10 @@ describe('DifficultyLevelWindow Component', () => {
         // @ts-ignore
         expect(difficultyTab).toHaveAttribute('aria-selected', 'true');
     });
-    it('renders difficulty tabs initial text', async () => {
+    it('renders difficulty tabs with black background', async () => {
         render(<DifficultyLevelWindow />);
-        const difficultyTab = screen.getByRole('tab');
+        const difficultyDiv = screen.getByText('Difficulties').parentElement;
         // @ts-ignore
-        expect(difficultyTab).toHaveTextContent('All');
+        expect(difficultyDiv).toHaveStyle('background-color: rgb(0 0 0);');
     });
 });
