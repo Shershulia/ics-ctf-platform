@@ -2,11 +2,11 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import {Pagination,Select, SelectItem} from "@nextui-org/react";
 import axios from "axios";
 type SortTopFilterProps = {
-    setPage: (value: number) => void,
-    page: number,
-    totalProblems: number
+    setPage?: (value: number) => void,
+    page?: number,
+    totalProblems?: number
 }
-const SortTopFilterComponent = ({setPage,page,totalProblems}:SortTopFilterProps) => {
+const SortTopFilterComponent = ({setPage,page,totalProblems=9}:SortTopFilterProps) => {
     const filters = ["Date", "Points" , "Difficulties"]
     const [filter, setFilter] = useState(filters[0]);
     const totalPages = Math.ceil(totalProblems/9);
@@ -21,6 +21,7 @@ const SortTopFilterComponent = ({setPage,page,totalProblems}:SortTopFilterProps)
             <div className={"flex justify-center items-center gap-10"}>
                 <p className={"text-white font-bold text-xl text-center mb-2"}>Sort</p>
                 <Select
+                    aria-label={"select"}
                     variant="flat"
                     selectedKeys={[filter]}
                     classNames={{
@@ -41,6 +42,7 @@ const SortTopFilterComponent = ({setPage,page,totalProblems}:SortTopFilterProps)
                 </Select>
             </div>
             <Pagination
+                aria-label={"pagination"}
                 total={totalPages}
                 color="primary"
                 page={page}
