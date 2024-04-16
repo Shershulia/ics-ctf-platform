@@ -23,4 +23,15 @@ describe('DifficultyLevelWindow Component', () => {
         // @ts-ignore
         expect(difficultyDiv).toHaveStyle('background-color: rgb(0 0 0);');
     });
+    it('All categories default value', async () => {
+        render(<DifficultyLevelWindow />);
+        // @ts-ignore
+        expect(screen.getByText('Difficulties')).toBeDefined();
+    });
+    it('background color primary', async () => {
+        render(<DifficultyLevelWindow />);
+        const tabList = screen.getByRole('tablist', { name: 'Tabs variants' });
+        // @ts-ignore
+        expect(tabList).toHaveClass('border-success');
+    });
 });
