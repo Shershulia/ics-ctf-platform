@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import {describe, expect, it} from "@jest/globals";
 import '@testing-library/jest-dom/extend-expect';
-import CategoryFilterWindow from "../../components/MainPage/FiltersRight/CategoryFilterWindow";
 import SortTopFilterComponent from "../../components/MainPage/SortTopFilter/SortTopFilterComponent";
 
 
