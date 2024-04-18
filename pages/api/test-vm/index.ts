@@ -21,7 +21,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
                 res.status(200).json({ output: stdout || stderr });
             });
         } else {
-            // Обрабатываем только POST запросы
             res.setHeader('Allow', ['POST']);
             res.status(405).end(`Method ${req.method} Not Allowed`);
         }
