@@ -19,9 +19,8 @@
     "db:test:up": "docker compose up test-db -d",
     "db:test:rm": "docker compose rm test-db -s -f -v",
     "prisma:test:deploy": "dotenv -e .env.test -- prisma migrate deploy",
-    "db:test:restart": "npm run db:test:rm && npm run db:test:up && node -e \"setTimeout(() => {}, 3000)\" && npm run prisma:test:deploy",
-    "pretest:db": "npm run db:test:restart",
-    "test:db": "jest --watch --no-cache"
+    "db:test:restart": "npm run db:test:rm && npm run db:test:up && node -e \"setTimeout(() => {}, 3000)\" && npm run prisma:test:deploy && npm run test"
+
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

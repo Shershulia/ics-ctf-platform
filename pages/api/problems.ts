@@ -9,7 +9,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     try {
         if (req.method === 'GET') {
             const { search, category , difficulty, page } = req.query;
-            console.log(page)
             let whereClause: any = {};
             if (search) {
                 whereClause.title =
@@ -40,6 +39,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             });
 
             res.status(200).json({ problems: problems });
+        }
+        else {
+            res.status(403).json({ error : "Method is not allowed" });
         }
 
     } catch (error) {
