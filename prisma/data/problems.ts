@@ -129,4 +129,14 @@ module.exports = [
         hints:[],
         isInTerminal: true,
     },
+    {
+        title: 'Understanding OPC/UA',
+        description: "OPC Unified Architecture is a machine-to-machine communication protocol used for exchange of various data and is frequently used in industrial applications to allow for secure exchange of industrial automation data. " +
+            "Have a look at the files provided using UaExpert and develop an understanding of its functionality by attempting to find the flag hidden within.",
+        points: 10,
+        categoryId : 3,
+        difficultyId: 2,
+        hints:[],
+        isInTerminal: true,
+    },
 ]

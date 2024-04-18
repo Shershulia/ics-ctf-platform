@@ -54,7 +54,11 @@ module.exports = [
         problemId: 11,
     },
     {
-        solution: 'CTF-{T35T_ABCD_1234}',
+        solution: 'CTF-{PACKET_3*P053D}',
         problemId: 12,
+    },
+    {
+        solution: 'CTF-{0PC_U4_X_P3RT}',
+        problemId: 13,
     },
 ]
