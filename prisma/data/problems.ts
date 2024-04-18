@@ -106,5 +106,27 @@ module.exports = [
         hints:[],
         isInTerminal: true,
     },
-
+    {
+        title: 'Node-RED Configuration',
+        description: "Node-RED is an essential part of the ICS testbed, which allows for connection between the testbed’s hardware and the respective APIs. " +
+            "An essential part of Node-RED is configuring the flow settings which are used upon startup, which contains a key used to encrypt and decrypt credentials used in certain nodes within the flows. " +
+            "Can you find the secret key used for credential encryption/decryption within the settings file?",
+        points: 5,
+        categoryId : 2,
+        difficultyId: 1,
+        hints:[],
+        isInTerminal: true,
+    },
+    {
+        title: 'Node-RED Flows',
+        description: "Flows in Node-RED allow for communication between different message protocols. " +
+            "In the testbed, it is used to convert between MQTT and OPC/UA. " +
+            "However, in this task there seems to be a vulnerability allowing for certain sensitive data to be exposed. " +
+            "Have a look at the simulated flow and the packet traffic which it creates and see if you can find the key using the weakness.",
+        points: 15,
+        categoryId : 3,
+        difficultyId: 3,
+        hints:[],
+        isInTerminal: true,
+    },
 ]
