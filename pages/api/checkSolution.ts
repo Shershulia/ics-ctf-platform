@@ -27,6 +27,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             const finalDecision = foundSolution.solution === solution;
             res.status(200).json({ decision: finalDecision });
 
+        }else {
+            res.status(403).json({ error : "Method is not allowed" });
         }
 
     } catch (error) {

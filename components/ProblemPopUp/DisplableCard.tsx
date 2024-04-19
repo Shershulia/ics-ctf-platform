@@ -95,6 +95,7 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
 
             <div className={"flex gap-4 mb-4"}>
                 <Input
+                    role={"input-ctf"}
                     label="CTF-{ANSWER  HERE}"
                     variant={"bordered"}
                     value={flag}

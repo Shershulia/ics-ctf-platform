@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             const categories = await prisma.category.findMany();
             res.status(200).json({ categories });
         }
-        if (req.method === 'POST') {
+        else if (req.method === 'POST') {
             const { name } = req.body;
 
             // Basic validation
@@ -27,6 +27,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             });
             res.status(201).json({ createdCategory });
 
+
+        }
+        else {
+            res.status(403).json({ error : "Method is not allowed" });
 
         }
     } catch (error) {

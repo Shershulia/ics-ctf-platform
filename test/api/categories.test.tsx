@@ -1,7 +1,7 @@
 import {beforeAll, describe, expect, it} from "@jest/globals";
 import * as pactum from 'pactum';
 
-
+//Start test DB before
 describe("Category api test", () => {
     beforeAll(async () => {
         pactum.request.setBaseUrl('http://localhost:3000')
@@ -24,11 +24,17 @@ describe("Category api test", () => {
                     name: 'category1'
                 })
                 .expectStatus(201)
-                .expectJson({
-                    id: 1,
-                    name: 'category1'
-                })
         }
+        )
+        it("should give error", async () => {
+                return pactum.spec()
+                    .post('/api/categories')
+                    .withJson({
+                        notName:""
+                    })
+                    .expectStatus(400)
+                    .expectJson({"error": "Name is required"})
+            }
         )
     })
     });

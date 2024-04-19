@@ -5,7 +5,7 @@ import {ICategory} from "@/ITypes/ICategory";
 
 type CategoryFilterProps = {
     category?: number,
-    setCategory: (value: number) => void,
+    setCategory?: (value: number) => void,
 };
 
 export const CustomRadio = (props : any) => {

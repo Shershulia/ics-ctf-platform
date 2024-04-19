@@ -53,7 +53,7 @@ const TopFilterWindow = ({searchValue, setSearchValue} : TopFilterProps) => {
                             input: "text-lg"
                         }}
                         endContent={
-                            <FaSearch className={"text-success text-lg"}/>
+                            <FaSearch data-testid="svg-image" className={"text-success text-lg"}/>
                         }
                     />
 
