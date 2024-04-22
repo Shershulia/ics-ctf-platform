@@ -1,13 +1,15 @@
 import {FrontendLayout, LeftAccountPageComponent, RightMainFunctionsComponent} from "@/components";
+import { useEffect, useState } from "react";
 
 export default function AccountPage() {
-    let name = "";
-    let email = "";
-
-    if (typeof window !== 'undefined') {
-        name = localStorage.getItem("name") || "undefined";
-        email = localStorage.getItem("email") || "undefined";
-    }
+    const [name,setName] = useState("");
+    const [email,setEmail] = useState("");
+    useEffect(()=>{
+        if (typeof window !== 'undefined') {
+            setName(localStorage.getItem("name") || "undefined")
+            setEmail(localStorage.getItem("email") || "undefined")
+        }
+    },[])
     
     return (
         <div>
@@ -17,7 +19,12 @@ export default function AccountPage() {
                         <LeftAccountPageComponent name={name} email={email}/>
                     </div>
                     <div className="col-span-2">
-                        <RightMainFunctionsComponent/>                        
+                        <RightMainFunctionsComponent 
+                            name={name}
+                            email={email}
+                            setName={setName}
+                            setEmail={setEmail}
+                            />                        
                     </div>
                 </div>
             </FrontendLayout>

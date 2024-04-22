@@ -8,24 +8,19 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
-
     "db:dev:up": "docker compose up db -d",
     "db:dev:rm": "docker compose rm db -s -f -v",
     "prisma:db:deploy": "prisma migrate deploy",
-
     "db:dev:restart": "npm run db:dev:rm && npm run db:dev:up && node -e \"setTimeout(() => {}, 3000)\" && npm run prisma:db:deploy  && npm run prisma:seed",
-
     "prisma:seed": "prisma db seed",
     "db:test:up": "docker compose up test-db -d",
     "db:test:rm": "docker compose rm test-db -s -f -v",
     "prisma:test:deploy": "dotenv -e .env.test -- prisma migrate deploy",
     "db:test:restart": "npm run db:test:rm && npm run db:test:up && node -e \"setTimeout(() => {}, 3000)\" && npm run prisma:test:deploy && npm run test"
-
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
-
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
     "@prisma/client": "^5.10.2",
@@ -36,7 +31,8 @@
     "pactum": "^3.6.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.0.1"
+    "react-icons": "^5.0.1",
+    "react-toastify": "^10.0.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
