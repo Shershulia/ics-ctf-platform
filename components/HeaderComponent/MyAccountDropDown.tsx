@@ -15,10 +15,14 @@ const MyAccountDropDown = () => {
             </DropdownTrigger>
             <DropdownMenu
                 aria-label="Action event example"
-                onAction={(key) => alert(key)}
+                onAction={(key) => {
+                    if (key==="logout"){
+                        alert("Clearing the credentials...")
+                        localStorage.setItem("user","{}-")
+                    }
+                }}
             >
                 <DropdownItem key="new" href="/account">My account</DropdownItem>
-                <DropdownItem key="redirect to edit page">Edit account</DropdownItem>
                 <DropdownItem key="logout" className="text-danger" color="danger">
                     Logout
                 </DropdownItem>

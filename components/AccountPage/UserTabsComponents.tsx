@@ -42,15 +42,6 @@ const UserTabsComponents = ({selected,setSelected} : UserTabsComponentsProps) =>
                     </div>
                 }
             />
-            <Tab
-                key="feedback"
-                title={
-                    <div className="flex items-center space-x-2">
-                        <MdOutlineFeedback />
-                        <span>Feedback</span>
-                    </div>
-                }
-            />
         </Tabs>
     );
 };
