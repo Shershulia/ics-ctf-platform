@@ -1,13 +1,26 @@
 import {FrontendLayout, LeftAccountPageComponent, RightMainFunctionsComponent} from "@/components";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function AccountPage() {
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
+
+    const [myPoints, setMyPoints] = useState(0);
+    const [totalPoints, setTotalPoints] = useState(0);
+
     useEffect(()=>{
         if (typeof window !== 'undefined') {
             setName(localStorage.getItem("name") || "undefined")
             setEmail(localStorage.getItem("email") || "undefined")
+            axios.get("/api/points/total").then(res=>{
+                setTotalPoints(res.data.totalPoints)
+            })
+            const solvedIds = JSON.parse(localStorage.getItem(`solved`) || '[]');
+            axios.post("/api/points/solved",{ids : solvedIds}).then(res=>{
+                setMyPoints(res.data.myPoints)
+            })
+
         }
     },[])
     
