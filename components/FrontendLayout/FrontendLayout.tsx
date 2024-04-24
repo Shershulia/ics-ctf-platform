@@ -5,9 +5,9 @@ type FrontendLayoutProps = {
 };
 const FrontendLayout = ({ children }: FrontendLayoutProps) => {
     return (
-        <div className={"h-screen bg-gray w-full"}>
+        <div className={"min-h-screen bg-gray w-full "}>
             <HeaderComponent/>
-            <div className={"w-[70%] m-auto my-12"}>{children}</div>
+            <div className={"w-[70%] m-auto mt-14 pb-14"}>{children}</div>
         </div>
     );
 };

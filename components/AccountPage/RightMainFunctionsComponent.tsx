@@ -3,6 +3,8 @@ import UserTabsComponents from "@/components/AccountPage/UserTabsComponents";
 import {Button, Input} from "@nextui-org/react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { IProblem } from '@/ITypes/IProblem';
+import ProblemContainer from './ProblemsContainer';
 
 type RightMainFunctionsProps = {
     name : string | null;
@@ -40,9 +42,16 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail} : RightMai
         toast.success("Your email is updated to "+inputEmail);
 
     }
+    const clearCredentials = () => {
+        localStorage.setItem("name","")
+        setName("undefined")
+        localStorage.setItem("email","")
+        setEmail("undefined")
+        toast.info("Credentials cleared!");
+    }
     
     return (
-        <div className={"bg-white rounded-md h-full"} style={{ height: '80vh flex justify-center items-center' }}>
+        <div className={"bg-white rounded-md h-full "} style={{ minHeight: '80vh' }}>
             <UserTabsComponents selected={selected} setSelected={setSelected}/>
             <ToastContainer
                 position="top-center"
@@ -58,7 +67,10 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail} : RightMai
                 />
             {selected === "edit-account" && 
             (
-                <div>
+                <div className='h-full flex flex-col justify-center items-center'>
+                    
+                    <ProblemContainer />
+
                     <div className={"flex gap-4 my-4 w-[80%] mx-auto"}>
                         <Input
                             label="Name"
@@ -93,7 +105,11 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail} : RightMai
                             Update Email
                         </Button>  
                     </div>
-
+                    <div className='w-full flex justify-center items-center pb-12'>
+                        <Button color="danger" variant="flat" size={"lg"} className={"py-7 mb-5"} onClick={clearCredentials}>
+                                Clear credentials
+                            </Button>  
+                    </div>
                 </div>
 )}
         </div>

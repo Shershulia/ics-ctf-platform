@@ -13,6 +13,7 @@ import DisplayCardsComponent from "./ProblemPopUp/DisplayCardsComponent";
 import DisplableCard from "./ProblemPopUp/DisplableCard";
 import StarRatingComponent from "./ProblemPopUp/StarRatingComponent";
 import RightMainFunctionsComponent from "./AccountPage/RightMainFunctionsComponent";
+import ProblemContainer from "./AccountPage/ProblemsContainer"
 export  {
     RightMainFunctionsComponent,
     LeftAccountPageComponent,
@@ -28,6 +29,7 @@ export  {
     DifficultyLevelWindow,
     CategoryFilterWindow,
     SortTopFilterComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    ProblemContainer
 
 }

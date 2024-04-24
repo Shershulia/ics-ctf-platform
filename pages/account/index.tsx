@@ -1,6 +1,7 @@
 import {FrontendLayout, LeftAccountPageComponent, RightMainFunctionsComponent} from "@/components";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { IProblem } from '@/ITypes/IProblem';
 
 export default function AccountPage() {
     const [name,setName] = useState("");
