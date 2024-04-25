@@ -38,6 +38,8 @@ export default function AccountPage() {
                             email={email}
                             setName={setName}
                             setEmail={setEmail}
+                            myPoints={myPoints}
+                            totalPoints={totalPoints}
                             />                        
                     </div>
                 </div>

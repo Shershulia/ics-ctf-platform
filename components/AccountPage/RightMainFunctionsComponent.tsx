@@ -1,19 +1,21 @@
 import React, { useEffect, useState, Dispatch, SetStateAction} from 'react';
 import UserTabsComponents from "@/components/AccountPage/UserTabsComponents";
-import {Button, Input} from "@nextui-org/react";
+import {Button, Input, Progress} from "@nextui-org/react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { IProblem } from '@/ITypes/IProblem';
 import ProblemContainer from './ProblemsContainer';
+import StatisticsComponent from './StatisticsComponent';
 
 type RightMainFunctionsProps = {
     name : string | null;
     setName: Dispatch<SetStateAction<string>>;
     email:string | null;
     setEmail: Dispatch<SetStateAction<string>>;
+    myPoints: number;
+    totalPoints: number;
  }
  
-const RightMainFunctionsComponent = ({name, setName, email, setEmail} : RightMainFunctionsProps) => {
+const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, totalPoints} : RightMainFunctionsProps) => {
 
     const [selected, setSelected] = useState("edit-account");
     const [inputName, setInputName] = useState("")
@@ -65,7 +67,7 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail} : RightMai
                 pauseOnHover
                 theme="dark"
                 />
-            {selected === "edit-account" && 
+            {selected === "edit-account" ?
             (
                 <div className='h-full flex flex-col justify-center items-center'>
                     
@@ -111,7 +113,27 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail} : RightMai
                             </Button>  
                     </div>
                 </div>
-)}
+            ) : (
+                    <div className='h-[80%] flex flex-col justify-center items-center'>
+                        <div className='flex w-[80%] h-full flex-col justify-center gap-12 items-center'>
+                            <div className='w-full'>
+                                <h1 className='text-center text-xl font-bold my-4'>Statistics: </h1>
+                                <StatisticsComponent/>
+                            </div>
+                            <div className='w-full'>
+                                <h1 className='text-center text-xl font-bold my-4'>Your solved problems: </h1>
+                                <Progress
+                                    aria-label="Downloading..."
+                                    size="md"
+                                    value={myPoints/totalPoints*100}
+                                    color="success"
+                                    showValueLabel={true}
+                                    className="w-full"
+                                    />
+                            </div>
+                        </div>
+                    </div>
+            )}
         </div>
     );
 };

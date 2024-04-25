@@ -3,6 +3,8 @@ import {IProblem} from "@/ITypes/IProblem";
 import {Button, Divider, Input, Pagination, ScrollShadow} from "@nextui-org/react";
 import StarRatingComponent from "@/components/ProblemPopUp/StarRatingComponent";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+
 type PopUpProps = {
     problem: IProblem,
     onClose?: () => void ,
@@ -11,12 +13,25 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
     const [currentHint, setCurrentHint] = useState(1);
     const [flag, setFlag] = useState("");
 
-
-    const closeWindow = (message:string) => {
+    const closeWindowSolved = () => {
+        toast.success("Good job! You have solved the problem")
         if (onClose) {
-            onClose()
+            setTimeout(() => {
+                onClose();
+            }, 1000);
+    }
+    }
+    
+    
+    const closeWindowError = async (msg : string) => {
+        if (onClose) {
+            toast.error("Good job! You have solved the problem");
+            if (onClose) {
+                setTimeout(() => {
+                    onClose();
+                }, 1000);
         }
-        alert(message)
+        }
     }
 
     const handleSendFlag = () => {
@@ -26,24 +41,36 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
                 if(solved){
                     let solvedArray = JSON.parse(solved);
                     let newSolvedArray = [...solvedArray, problem.id];
-                    if(newSolvedArray.includes(problem.id)){
-                        closeWindow("You have already solved this problem")
+                    if(solvedArray.includes(problem.id)){
+                        closeWindowError("You have already solved this problem");
                     }else {
                         localStorage.setItem(`solved`, JSON.stringify(newSolvedArray));
-                        closeWindow("Good job! You have solved the problem")
+                        closeWindowSolved();
                     }
                 }else{
                     let newSolvedArray = [problem.id];
                     localStorage.setItem(`solved`, JSON.stringify(newSolvedArray));
-                    closeWindow("Good job! You have solved the problem")
+                    closeWindowSolved();
                 }
             }else {
-                alert("Wrong flag! Try again")
+                toast.error("Wrong flag! Try again")
             }
         });
     }
     return (
         <div>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                />
             <div className={`flex justify-between items-center mb-4`}>
                 <p className={"font-bold truncate text-2xl w-2/3"}>{problem.id}. {problem.title}</p>
                 <div className={"flex gap-2 justify-center items-center"}>
