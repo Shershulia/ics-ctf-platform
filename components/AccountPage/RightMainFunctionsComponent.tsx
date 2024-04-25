@@ -70,7 +70,7 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail} : RightMai
                 <div className='h-full flex flex-col justify-center items-center'>
                     
                     <ProblemContainer />
-
+                    <h1 className='text-center text-xl font-bold'>Your credentials: </h1>
                     <div className={"flex gap-4 my-4 w-[80%] mx-auto"}>
                         <Input
                             label="Name"
