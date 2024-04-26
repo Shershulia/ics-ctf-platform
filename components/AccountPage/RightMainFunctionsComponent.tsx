@@ -5,6 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProblemContainer from './ProblemsContainer';
 import StatisticsComponent from './StatisticsComponent';
+import CreateDiplomaComponent from './CreateDiplomaComponent';
 
 type RightMainFunctionsProps = {
     name : string | null;
@@ -33,15 +34,15 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, 
     }, []);
 
     const setNameInLocalStorage = () =>{
+        toast.success("Your name is updated to "+inputName);
         localStorage.setItem("name",inputName)
         setName(inputName)
-        toast.success("Your name is updated to "+inputName);
         
     }
     const setEmailInLocalStorage = () =>{
+        toast.success("Your email is updated to "+inputEmail);
         localStorage.setItem("email",inputEmail)
         setEmail(inputEmail)
-        toast.success("Your email is updated to "+inputEmail);
 
     }
     const clearCredentials = () => {
@@ -114,7 +115,7 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, 
                     </div>
                 </div>
             ) : (
-                    <div className='h-[80%] flex flex-col justify-center items-center'>
+                    <div className='h-full flex flex-col justify-center items-center'>
                         <div className='flex w-[80%] h-full flex-col justify-center gap-12 items-center'>
                             <div className='w-full'>
                                 <h1 className='text-center text-xl font-bold my-4'>Statistics: </h1>
@@ -130,6 +131,17 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, 
                                     showValueLabel={true}
                                     className="w-full"
                                     />
+                            </div>
+                            <div className='w-full flex flex-col justify-center items-center'>
+                                <h1 className='text-center text-xl font-bold my-4'>Assign your diploma: </h1>
+                                <CreateDiplomaComponent 
+                                    name={name}
+                                    email={email}
+                                    problemsSolved={myPoints/totalPoints*100}
+                                    
+                                    />
+
+                                    
                             </div>
                         </div>
                     </div>

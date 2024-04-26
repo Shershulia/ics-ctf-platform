@@ -9,7 +9,7 @@ type SortTopFilterProps = {
 const SortTopFilterComponent = ({setPage,page,totalProblems=9}:SortTopFilterProps) => {
     const filters = ["Date", "Points" , "Difficulties"]
     const [filter, setFilter] = useState(filters[0]);
-    const totalPages = Math.ceil(totalProblems/9);
+    const totalPages = Math.ceil(totalProblems/9) || 1;
     const handleSelectionChange = (e : ChangeEvent<HTMLSelectElement>) => {
         setFilter(e.target.value);
     };
