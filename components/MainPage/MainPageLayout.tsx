@@ -11,14 +11,17 @@ type MainPageLayoutProps = {
     setDifficulty: (value: number) => void,
     category: number,
     setCategory: (value: number) => void,
+    hideSolved: boolean,
+    setHideSolved: (value: boolean)=>void,
 };
-const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue, setPage, page, totalProblems }: MainPageLayoutProps) => {
+const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue, setPage, page, totalProblems, setHideSolved, hideSolved }: MainPageLayoutProps) => {
     return (
         <div className={"flex gap-[100px]"}>
             <div className={"w-1/3"}>
                 <RightFiltersComponent setSearchValue={setSearchValue} searchValue={searchValue}
                                        setDifficulty={setDifficulty} difficulty={difficulty}
                                        setCategory={setCategory} category={category}
+                                       setHideSolved={setHideSolved} hideSolved={hideSolved}
                 />
             </div>
             <div className={"flex flex-col w-full gap-[50px]"}>

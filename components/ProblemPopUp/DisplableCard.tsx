@@ -139,12 +139,12 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
                 </Button>
             </div>
 
-            <div className={"flex gap-4 flex-col"}>
+            {/* <div className={"flex gap-4 flex-col"}>
                 <p className={"font-bold text-2xl mb-4"}>Rate</p>
                 <div>
                     <StarRatingComponent />
                 </div>
-            </div>
+            </div> */}
 
 
         </div>

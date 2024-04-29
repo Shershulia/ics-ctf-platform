@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Checkbox, Input} from "@nextui-org/react";
 import { FaSearch } from "react-icons/fa";
 
 type TopFilterProps = {
     searchValue?: string,
     setSearchValue?: (value: string) => void,
+    hideSolved: boolean,
+    setHideSolved: (value: boolean)=>void,
+
 };
 
-const TopFilterWindow = ({searchValue, setSearchValue} : TopFilterProps) => {
-    const [hideSolved, setHideSolved] = useState(false);
+const TopFilterWindow = ({searchValue, setSearchValue, setHideSolved, hideSolved } : TopFilterProps) => {
     const [showSaved, setShowSaved] = useState(false);
 
     return (
@@ -25,7 +27,7 @@ const TopFilterWindow = ({searchValue, setSearchValue} : TopFilterProps) => {
                               label: "w-full text-white",
                           }}
                 >
-                    Hide Solved
+                    Unsolved
                 </Checkbox>
                 <Checkbox isSelected={showSaved}
 

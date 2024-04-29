@@ -18,7 +18,7 @@ describe("Main Page", () => {
             render(<TopFilterWindow />);
             render(<Checkbox />);
 
-            const myElem = screen.getByText("Hide Solved");
+            const myElem = screen.getByText("Unsolved");
             expect(myElem).toBeDefined();
         });
         it("should be show saved", async () => {
