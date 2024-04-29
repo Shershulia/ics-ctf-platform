@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {IProblem} from "@/ITypes/IProblem";
 import {Button, Divider, Input, Pagination, ScrollShadow} from "@nextui-org/react";
 import StarRatingComponent from "@/components/ProblemPopUp/StarRatingComponent";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
+import { FaRegBookmark, FaBookmark  } from "react-icons/fa";
 
 type PopUpProps = {
     problem: IProblem,
@@ -12,6 +13,11 @@ type PopUpProps = {
 const DisplableCard = ({problem, onClose}:PopUpProps) => {
     const [currentHint, setCurrentHint] = useState(1);
     const [flag, setFlag] = useState("");
+    const [isInSaved, setIsInSaved] = useState(false);
+
+    useEffect(()=>{
+        setIsInSaved(JSON.parse(localStorage.getItem(`saved`) || '[]').includes(problem.id))
+    },[])
 
     const closeWindowSolved = () => {
         toast.success("Good job! You have solved the problem")
@@ -57,6 +63,24 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
             }
         });
     }
+
+    const setSaved = () => {
+        const saved = localStorage.getItem(`saved`);
+        if (saved) {
+            let solvedArray = JSON.parse(saved);
+            if (solvedArray.includes(problem.id)) {
+                let newSolvedArray = solvedArray.filter(id => id !== problem.id);
+                localStorage.setItem(`saved`, JSON.stringify(newSolvedArray));
+            } else {
+                let newSolvedArray = [...solvedArray, problem.id];
+                localStorage.setItem(`saved`, JSON.stringify(newSolvedArray));
+            }
+        } else {
+            let newSolvedArray = [problem.id];
+            localStorage.setItem(`saved`, JSON.stringify(newSolvedArray));
+        }
+        setIsInSaved(prev => !prev);
+    }
     return (
         <div>
             <ToastContainer
@@ -73,6 +97,13 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
                 />
             <div className={`flex justify-between items-center mb-4`}>
                 <p className={"font-bold truncate text-2xl w-2/3"}>{problem.id}. {problem.title}</p>
+                <button onClick={setSaved}>
+                    {isInSaved ?
+                            (<FaBookmark/>)  :
+                            (<FaRegBookmark/>)
+                        }
+                </button>
+                
                 <div className={"flex gap-2 justify-center items-center"}>
                     {localStorage.getItem(`solved`) !== null && JSON.parse(localStorage.getItem(`solved`) || '[]').includes(problem.id) ?
                         (<p className={"p-1 bg-lime-600 rounded-md text-white"}>Solved</p>) :

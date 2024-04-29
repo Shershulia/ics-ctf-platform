@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {IProblem} from "@/ITypes/IProblem";
 import {DisplableCard} from "@/components";
 import {Modal, ModalContent, useDisclosure} from "@nextui-org/react";
+
+import { FaRegBookmark, FaBookmark  } from "react-icons/fa";
+
+
 type LittleCardProps = {
     problem: IProblem,
     width?:string,
@@ -10,7 +14,6 @@ type LittleCardProps = {
 //Default width is "" if its not provided in the props
 const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProps) => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
-
     return (
         <div className={"relative"}>
             <div className={`
@@ -33,12 +36,17 @@ const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProp
                 <p className={"text-ellipsis  overflow-hidden h-28"}>{problem.description}</p>
                 <div className={"flex justify-between items-center"}>
                     <p className={`
-                
-                ${(problem.difficulty.name==="Hard") && "text-red"}
-                ${(problem.difficulty.name==="Medium") && "text-yellow"}
-                ${(problem.difficulty.name==="Easy") && "text-success"}
-                font-bold
-                `}>{problem.difficulty.name}</p>
+                    ${(problem.difficulty.name==="Hard") && "text-red"}
+                    ${(problem.difficulty.name==="Medium") && "text-yellow"}
+                    ${(problem.difficulty.name==="Easy") && "text-success"}
+                    font-bold
+                    `}>{problem.difficulty.name}</p>
+
+                    <div>                    
+                        {localStorage.getItem(`saved`) !== null && JSON.parse(localStorage.getItem(`saved`) || '[]').includes(problem.id) ?
+                            (<FaBookmark/>) 
+                            : (<FaRegBookmark/>)}
+                            </div>
                 </div>
             </div>
 
