@@ -24,7 +24,7 @@ describe("Main Page", () => {
         it("should be show saved", async () => {
             render(<TopFilterWindow />);
             render(<Checkbox />);
-            const myElem = screen.getByText("Show Saved");
+            const myElem = screen.getByText("Saved");
             expect(myElem).toBeDefined();
         });
 

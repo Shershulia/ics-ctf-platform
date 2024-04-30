@@ -13,8 +13,11 @@ type MainPageLayoutProps = {
     setCategory: (value: number) => void,
     hideSolved: boolean,
     setHideSolved: (value: boolean)=>void,
+    showSaved: boolean,
+    setShowSaved: (value: boolean)=>void,
+
 };
-const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue, setPage, page, totalProblems, setHideSolved, hideSolved }: MainPageLayoutProps) => {
+const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue, setPage, page, totalProblems, setHideSolved, hideSolved, showSaved ,setShowSaved }: MainPageLayoutProps) => {
     return (
         <div className={"flex gap-[100px]"}>
             <div className={"w-1/3"}>
@@ -22,6 +25,8 @@ const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , ca
                                        setDifficulty={setDifficulty} difficulty={difficulty}
                                        setCategory={setCategory} category={category}
                                        setHideSolved={setHideSolved} hideSolved={hideSolved}
+                                       showSaved={showSaved} setShowSaved={setShowSaved}
+
                 />
             </div>
             <div className={"flex flex-col w-full gap-[50px]"}>

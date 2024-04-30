@@ -7,12 +7,12 @@ type TopFilterProps = {
     setSearchValue?: (value: string) => void,
     hideSolved: boolean,
     setHideSolved: (value: boolean)=>void,
+    showSaved: boolean,
+    setShowSaved: (value: boolean)=>void,
 
 };
 
-const TopFilterWindow = ({searchValue, setSearchValue, setHideSolved, hideSolved } : TopFilterProps) => {
-    const [showSaved, setShowSaved] = useState(false);
-
+const TopFilterWindow = ({searchValue, setSearchValue, setHideSolved, hideSolved, showSaved ,setShowSaved } : TopFilterProps) => {
     return (
         <div className={"bg-black w-full rounded-md py-4 px-8"}>
             <p className={"text-white font-bold text-xl text-center mb-2"}>Filters</p>
@@ -39,7 +39,7 @@ const TopFilterWindow = ({searchValue, setSearchValue, setHideSolved, hideSolved
                               label: "w-full text-white",
                           }}
                 >
-                    Show Saved
+                    Saved
                 </Checkbox>
                     <Input
                         label="Title"

@@ -10,6 +10,7 @@ import axios, {AxiosResponse} from "axios";
 export default function Home() {
     const [searchValue, setSearchValue] = useState("");
     const [hideSolved, setHideSolved] = useState(false);
+    const [showSaved, setShowSaved] = useState(false)
 
     const [difficulty, setDifficulty] = useState(0);
     const [category, setCategory] = useState(0);
@@ -19,6 +20,8 @@ export default function Home() {
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [problems, setProblems] = useState<IProblem[]>([]);
+    const [displayProblems, setDisplayProblems] = useState<IProblem[]>([]);
+
 
     useEffect(() => {
         axios.get("/api/problems/total")
@@ -32,24 +35,26 @@ export default function Home() {
         axios.get(`/api/problems?search=${searchValue}&category=${category}&difficulty=${difficulty}&page=${page}`)
             .then((response: AxiosResponse<{problems:IProblem[]}>) => {
                 let sortedProblems = response.data.problems;
-                if(hideSolved){
+                if(hideSolved && !showSaved){
                     const solvedIds = JSON.parse(localStorage.getItem(`solved`) || '[]');
-                    sortedProblems.sort((a, b) => {
-                        const aIsSolved = solvedIds.includes(a.id);
-                        const bIsSolved = solvedIds.includes(b.id);
-                        if (!aIsSolved && bIsSolved) {
-                            return -1;
-                        } else if (aIsSolved && !bIsSolved) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
-                    });
+                    sortedProblems = sortedProblems.filter(problem => !solvedIds.includes(problem.id));
+                }
+                else if(showSaved && !hideSolved){
+                    const solvedIds = JSON.parse(localStorage.getItem(`saved`) || '[]');
+                    sortedProblems = sortedProblems.filter(problem => solvedIds.includes(problem.id));
+                }else if (showSaved && hideSolved){
+                    const solvedIds = JSON.parse(localStorage.getItem(`solved`) || '[]');
+                    const savedIds = JSON.parse(localStorage.getItem(`saved`) || '[]');
+                    const combinedIds = solvedIds.concat(savedIds);
+                    sortedProblems = sortedProblems.filter(problem => combinedIds.includes(problem.id));
                 }
                 setProblems(sortedProblems);
                 setIsLoading(false);
             });
-    }, [difficulty, searchValue, category, page, hideSolved]);
+    }, [difficulty, searchValue, category, page, hideSolved, showSaved]);
+    useEffect(()=>{
+        setDisplayProblems(problems.slice((page-1)*9,page*9))
+    },[problems,page])
 
     return (
       <div>
@@ -59,8 +64,9 @@ export default function Home() {
                             searchValue={searchValue} setSearchValue={setSearchValue}
                             setPage={setPage} page={page} totalProblems={totalProblems}
                             setHideSolved={setHideSolved} hideSolved={hideSolved}
+                            showSaved={showSaved} setShowSaved={setShowSaved}
                             >
-                <DisplayCardsComponent height={"max-h-80"} isLoading={isLoading} problems={problems}  />
+                <DisplayCardsComponent height={"max-h-80"} isLoading={isLoading} problems={displayProblems}  />
 
             </MainPageLayout>
         </FrontendLayout>
