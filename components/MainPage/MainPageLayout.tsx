@@ -15,9 +15,11 @@ type MainPageLayoutProps = {
     setHideSolved: (value: boolean)=>void,
     showSaved: boolean,
     setShowSaved: (value: boolean)=>void,
+    filter: string,
+    setFilter: (value: string) => void,
 
 };
-const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue, setPage, page, totalProblems, setHideSolved, hideSolved, showSaved ,setShowSaved }: MainPageLayoutProps) => {
+const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , category , setSearchValue , searchValue, setPage, page, totalProblems, setHideSolved, hideSolved, showSaved ,setShowSaved, filter, setFilter }: MainPageLayoutProps) => {
     return (
         <div className={"flex gap-[100px]"}>
             <div className={"w-1/3"}>
@@ -33,6 +35,8 @@ const MainPageLayout = ({ children, difficulty, setDifficulty , setCategory , ca
                 <SortTopFilterComponent setPage={setPage}
                                         page={page}
                                         totalProblems={totalProblems}
+                                        filter={filter}
+                                        setFilter={setFilter}
                 />
                 <div className={"w-full h-full"}>
                     {children}

@@ -4,11 +4,13 @@ import axios from "axios";
 type SortTopFilterProps = {
     setPage?: (value: number) => void,
     page?: number,
-    totalProblems?: number
+    totalProblems?: number,
+    filter: string,
+    setFilter: (value: string) => void,
+
 }
-const SortTopFilterComponent = ({setPage,page,totalProblems=9}:SortTopFilterProps) => {
-    const filters = ["Date", "Points" , "Difficulties"]
-    const [filter, setFilter] = useState(filters[0]);
+const SortTopFilterComponent = ({setPage,page,totalProblems=9, filter, setFilter}:SortTopFilterProps) => {
+    const filters = ["Date", "Points" , "Difficulties", "Id"]
     const totalPages = Math.ceil(totalProblems/9) || 1;
     const handleSelectionChange = (e : ChangeEvent<HTMLSelectElement>) => {
         setFilter(e.target.value);

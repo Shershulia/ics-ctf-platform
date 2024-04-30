@@ -11,6 +11,7 @@ export default function Home() {
     const [searchValue, setSearchValue] = useState("");
     const [hideSolved, setHideSolved] = useState(false);
     const [showSaved, setShowSaved] = useState(false)
+    const [filter, setFilter] = useState("Date");
 
     const [difficulty, setDifficulty] = useState(0);
     const [category, setCategory] = useState(0);
@@ -27,7 +28,6 @@ export default function Home() {
         axios.get("/api/problems/total")
             .then((response: AxiosResponse<{totalProblems: number}>) => {
                 setTotalProblems(response.data.totalProblems);
-                console.log(response.data.totalProblems);
             });
     }   , []);
     useEffect(() => {
@@ -44,17 +44,44 @@ export default function Home() {
                     sortedProblems = sortedProblems.filter(problem => solvedIds.includes(problem.id));
                 }else if (showSaved && hideSolved){
                     const solvedIds = JSON.parse(localStorage.getItem(`solved`) || '[]');
+                    const unsolvedIds = sortedProblems.filter(problem => !solvedIds.includes(problem.id)).map((problem)=>(problem.id))
                     const savedIds = JSON.parse(localStorage.getItem(`saved`) || '[]');
-                    const combinedIds = solvedIds.concat(savedIds);
+                    const combinedIds = unsolvedIds.concat(savedIds);
                     sortedProblems = sortedProblems.filter(problem => combinedIds.includes(problem.id));
                 }
                 setProblems(sortedProblems);
                 setIsLoading(false);
             });
-    }, [difficulty, searchValue, category, page, hideSolved, showSaved]);
-    useEffect(()=>{
-        setDisplayProblems(problems.slice((page-1)*9,page*9))
-    },[problems,page])
+        }, [difficulty, searchValue, category, page, hideSolved, showSaved]);
+        useEffect(() => {
+            setDisplayProblems(problems.slice((page - 1) * 9, page * 9));
+            if (filter === "Date") {
+                setDisplayProblems(prevState => (
+                    prevState.slice().sort((a, b) => {
+                        return new Date(a.createdAt) - new Date(b.createdAt);
+                    })
+                ));
+            } else if (filter === "Points") {
+                setDisplayProblems(prevState => (
+                    prevState.slice().sort((a, b) => {
+                        return a.points - b.points;
+                    })
+                ));
+            } else if (filter === "Difficulties") {
+                setDisplayProblems(prevState => (
+                    prevState.slice().sort((a, b) => {
+                        return a.difficultyId - b.difficultyId;
+                    })
+                ));
+            } else if (filter === "Id") {
+                setDisplayProblems(prevState => (
+                    prevState.slice().sort((a, b) => {
+                        return a.id - b.id;
+                    })
+                ));
+            }
+        }, [problems, page, filter]);
+        
 
     return (
       <div>
@@ -65,6 +92,7 @@ export default function Home() {
                             setPage={setPage} page={page} totalProblems={totalProblems}
                             setHideSolved={setHideSolved} hideSolved={hideSolved}
                             showSaved={showSaved} setShowSaved={setShowSaved}
+                            filter={filter} setFilter={setFilter}
                             >
                 <DisplayCardsComponent height={"max-h-80"} isLoading={isLoading} problems={displayProblems}  />
 
