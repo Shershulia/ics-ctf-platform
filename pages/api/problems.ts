@@ -24,9 +24,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             }
 
             // Calculate skip and take for pagination
-            const pageNumber = page ? parseInt(page.toString()) : 1;
-            const take = 9;
-            const skip = (pageNumber - 1) * take;
+            // const pageNumber = page ? parseInt(page.toString()) : 1;
+            // const take = 9;
+            // const skip = (pageNumber - 1) * take;
 
             const problems = await prisma.problem.findMany({
                 include: {
@@ -34,8 +34,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
                     difficulty: true,
                 },
                 where: whereClause,
-                skip: skip,
-                take: take,
+                // skip: skip,
+                // take: take,
             });
 
             res.status(200).json({ problems: problems });

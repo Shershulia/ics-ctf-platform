@@ -33,11 +33,12 @@ describe('CategoryFilterWindow Component', () => {
         // @ts-ignore
         expect(categoryDiv).toHaveStyle('background-color: rgb(0 0 0);');
     });
-    it('Three option value', async () => {
+    it('four option value', async () => {
         render(<SortTopFilterComponent />);
         expect(screen.getAllByText('Date')).toBeDefined();
         expect(screen.getByText('Points')).toBeDefined();
         expect(screen.getByText('Difficulties')).toBeDefined();
+        expect(screen.getByText('Id')).toBeDefined();
 
     });
 

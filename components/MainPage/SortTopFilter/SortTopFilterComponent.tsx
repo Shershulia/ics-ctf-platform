@@ -4,12 +4,14 @@ import axios from "axios";
 type SortTopFilterProps = {
     setPage?: (value: number) => void,
     page?: number,
-    totalProblems?: number
+    totalProblems?: number,
+    filter: string,
+    setFilter: (value: string) => void,
+
 }
-const SortTopFilterComponent = ({setPage,page,totalProblems=9}:SortTopFilterProps) => {
-    const filters = ["Date", "Points" , "Difficulties"]
-    const [filter, setFilter] = useState(filters[0]);
-    const totalPages = Math.ceil(totalProblems/9);
+const SortTopFilterComponent = ({setPage,page,totalProblems=9, filter, setFilter}:SortTopFilterProps) => {
+    const filters = ["Date", "Points" , "Difficulties", "Id"]
+    const totalPages = Math.ceil(totalProblems/9) || 1;
     const handleSelectionChange = (e : ChangeEvent<HTMLSelectElement>) => {
         setFilter(e.target.value);
     };
@@ -17,9 +19,9 @@ const SortTopFilterComponent = ({setPage,page,totalProblems=9}:SortTopFilterProp
 
 
     return (
-        <div className={"bg-black w-full rounded-md py-4 px-8 flex justify-between items-center"}>
-            <div className={"flex justify-center items-center gap-10"}>
-                <p className={"text-white font-bold text-xl text-center mb-2"}>Sort</p>
+        <div className={"bg-black w-full rounded-md md:py-4 py-2 md:px-8 px-4 gap-2 flex justify-between items-center md:flex-row flex-col "}>
+            <div className={"flex justify-center items-center gap-10 md:flex-row flex-col"}>
+                <p className={"text-white font-bold text-xl text-center mb-2 md:block hidden"}>Sort</p>
                 <Select
                     aria-label={"select"}
                     variant="flat"

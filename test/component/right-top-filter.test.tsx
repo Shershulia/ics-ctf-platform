@@ -18,13 +18,13 @@ describe("Main Page", () => {
             render(<TopFilterWindow />);
             render(<Checkbox />);
 
-            const myElem = screen.getByText("Hide Solved");
+            const myElem = screen.getByText("Unsolved");
             expect(myElem).toBeDefined();
         });
         it("should be show saved", async () => {
             render(<TopFilterWindow />);
             render(<Checkbox />);
-            const myElem = screen.getByText("Show Saved");
+            const myElem = screen.getByText("Saved");
             expect(myElem).toBeDefined();
         });
 

@@ -1,18 +1,20 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Checkbox, Input} from "@nextui-org/react";
 import { FaSearch } from "react-icons/fa";
 
 type TopFilterProps = {
     searchValue?: string,
     setSearchValue?: (value: string) => void,
+    hideSolved: boolean,
+    setHideSolved: (value: boolean)=>void,
+    showSaved: boolean,
+    setShowSaved: (value: boolean)=>void,
+
 };
 
-const TopFilterWindow = ({searchValue, setSearchValue} : TopFilterProps) => {
-    const [hideSolved, setHideSolved] = useState(false);
-    const [showSaved, setShowSaved] = useState(false);
-
+const TopFilterWindow = ({searchValue, setSearchValue, setHideSolved, hideSolved, showSaved ,setShowSaved } : TopFilterProps) => {
     return (
-        <div className={"bg-black w-full rounded-md py-4 px-8"}>
+        <div className={"bg-black w-full rounded-md p-4"}>
             <p className={"text-white font-bold text-xl text-center mb-2"}>Filters</p>
                 <div className={"flex flex-col justify-center gap-2"}>
                 <Checkbox isSelected={hideSolved}
@@ -25,7 +27,7 @@ const TopFilterWindow = ({searchValue, setSearchValue} : TopFilterProps) => {
                               label: "w-full text-white",
                           }}
                 >
-                    Hide Solved
+                    Unsolved
                 </Checkbox>
                 <Checkbox isSelected={showSaved}
 
@@ -37,7 +39,7 @@ const TopFilterWindow = ({searchValue, setSearchValue} : TopFilterProps) => {
                               label: "w-full text-white",
                           }}
                 >
-                    Show Saved
+                    Saved
                 </Checkbox>
                     <Input
                         label="Title"

@@ -6,8 +6,9 @@ type LeftAccountProps = {
 }
 
 const LeftAccountPageComponent = ({name, email} : LeftAccountProps ) => {
+
     return (
-        <div className={"bg-black w-full rounded-md py-4 px-8 flex flex-col justify-center items-center "}>
+        <div className={"bg-black w-full rounded-md lg:py-4 lg:px-8 py-2 px-4 flex flex-col justify-center items-center "}>
             <div className={"text-center my-4"}>
                 <p className={"text-white text-2xl font-bold"}>Name: {name}</p>
                 <p className={"text-white"}>Email: {email}</p>

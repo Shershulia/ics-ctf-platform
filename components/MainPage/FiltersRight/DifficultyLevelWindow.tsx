@@ -32,7 +32,7 @@ const DifficultyLevelWindow = ({difficulty,setDifficulty = ()=>{}}: DifficultyLe
             });
     }, []);
     return (
-        <div className={"bg-black w-full rounded-md py-4 px-8"}>
+        <div className={"bg-black w-full rounded-md p-4"}>
             <p className={"text-white font-bold text-xl text-center mb-2"}>Difficulties</p>
             <div className={"flex flex-col justify-center gap-2"}>
                  <Tabs fullWidth={true}
