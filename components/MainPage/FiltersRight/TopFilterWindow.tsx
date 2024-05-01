@@ -14,7 +14,7 @@ type TopFilterProps = {
 
 const TopFilterWindow = ({searchValue, setSearchValue, setHideSolved, hideSolved, showSaved ,setShowSaved } : TopFilterProps) => {
     return (
-        <div className={"bg-black w-full rounded-md py-4 px-8"}>
+        <div className={"bg-black w-full rounded-md p-4"}>
             <p className={"text-white font-bold text-xl text-center mb-2"}>Filters</p>
                 <div className={"flex flex-col justify-center gap-2"}>
                 <Checkbox isSelected={hideSolved}

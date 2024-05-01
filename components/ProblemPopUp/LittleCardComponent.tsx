@@ -21,7 +21,7 @@ const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProp
                 ? (`bg-gray z-50 absolute w-full h-full cursor-not-allowed opacity-50`):("")}    
         ` }  onClick={onOpen}></div>
 
-            <div className={`bg-white border p-4 border-2 rounded-md 
+            <div className={`bg-white border lg:p-4 p-2 border-2 rounded-md 
         overflow-hidden flex flex-col justify-between z-10 ${width} ${height} 
         ${localStorage.getItem(`solved`) !== null && JSON.parse(localStorage.getItem(`solved`) || '[]').includes(problem.id) 
                     ? ("cursor-not-allowed bg-gray-500"):("cursor-pointer bg-white")}    
@@ -29,8 +29,9 @@ const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProp
                  onClick={onOpen}>
 
                 <div className={"flex justify-between items-center"}>
-                    <p className={"w-2/3 truncate "}>{problem.category.name}</p>
-                    <p>{problem.points} pts.</p>
+                    <p className={"lg:w-2/3 truncate w-full"}>{problem.category.name}</p>
+                    <p className='hidden lg:block'>{problem.points} pts.</p>
+                    <p className='font-bold lg:hidden block'>{problem.points}</p>
                 </div>
                 <p className={"text-xl font-bold truncate"}>{problem.title}</p>
                 <p className={"text-ellipsis  overflow-hidden h-28"}>{problem.description}</p>
@@ -80,7 +81,7 @@ const LittleCardComponent = ({problem, width = "", height = ""} : LittleCardProp
             >
                 <ModalContent>
                     {(onClose) => (
-                        <div className={"m-12"}>
+                        <div className={"lg:m-12 m-6"}>
                             <DisplableCard problem={problem} onClose={onClose}  />
                         </div>
                     )}

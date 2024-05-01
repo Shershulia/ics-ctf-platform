@@ -95,27 +95,20 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
                 pauseOnHover
                 theme="dark"
                 />
-            <div className={`flex justify-between items-center mb-4`}>
-                <p className={"font-bold truncate text-2xl w-2/3"}>{problem.id}. {problem.title}</p>
-                <button onClick={setSaved}>
-                    {isInSaved ?
-                            (<FaBookmark/>)  :
-                            (<FaRegBookmark/>)
-                        }
-                </button>
-                
-                <div className={"flex gap-2 justify-center items-center"}>
-                    {localStorage.getItem(`solved`) !== null && JSON.parse(localStorage.getItem(`solved`) || '[]').includes(problem.id) ?
-                        (<p className={"p-1 bg-lime-600 rounded-md text-white"}>Solved</p>) :
-                        (<p className={"p-1 bg-red rounded-md text-white"}>Not solved</p>)
-                    }
-
-                    <p className={"font-bold"}>|</p>
-                    <p className={"font-bold"}>{problem.points} pts.</p>
+            <div className={`flex lg:flex justify-between items-center mb-4`}>
+                <p className={"font-bold lg:text-2xl text-xl w-2/3"}>{problem.id}. {problem.title}</p>
+                <div className='flex flex justify-end lg:gap-8 gap-4'>
+                    <button onClick={setSaved}>
+                        {isInSaved ?
+                                (<FaBookmark/>)  :
+                                (<FaRegBookmark/>)
+                            }
+                    </button>                   
+                    <p className={"font-bold truncate"}>{problem.points} pts.</p>
                 </div>
             </div>
 
-            <div className={"flex gap-4"}>
+            <div className={"flex flex-wrap gap-4"}>
                 <div className={`p-2 
                          ${(problem.difficulty.name==="Hard") && "bg-red"}
                          ${(problem.difficulty.name==="Medium") && "bg-yellow"}
@@ -123,19 +116,24 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
                          rounded-md text-white font-bold`}>
                     {problem.difficulty.name}</div>
                 <div className={"p-2 bg-gray rounded-md"}>{problem.category.name}</div>
+                {localStorage.getItem(`solved`) !== null && JSON.parse(localStorage.getItem(`solved`) || '[]').includes(problem.id) ?
+                        (<p className={"p-2 bg-lime-600 rounded-md text-white"}>Solved</p>) :
+                        (<p className={"p-2 bg-red rounded-md text-white"}>Not solved</p>)
+                    }
             </div>
 
             <div className={"h-px bg-gray my-4"}/>
 
             <div className={"flex justify-between"}>
-                <div className={"w-3/5"}>
+            <div className={` ${problem.hints?.length > 0 ? 'w-3/5' : 'w-full'}`}>
                     <p className={"font-bold text-2xl"}>Description</p>
 
                     <ScrollShadow size={40} hideScrollBar  className="w-full h-48">
                         <p className={"my-4"}>{problem.description}</p>
                     </ScrollShadow>
                 </div>
-                {problem.hints && (<div className={"w-2/5  flex flex-col justify-start items-center text-center text-sm ml-2"}>
+                {problem.hints?.length>0 && (
+                <div className={"w-2/5  flex flex-col justify-start items-center text-center text-sm ml-2"}>
                     <p className={"font-bold text-2xl mb-4"}>Hints</p>
                         <Pagination
                             total={problem.hints?.length}
@@ -154,7 +152,7 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
             <div className={"flex gap-4 mb-4"}>
                 <Input
                     role={"input-ctf"}
-                    label="CTF-{ANSWER  HERE}"
+                    label="Flag"
                     variant={"bordered"}
                     value={flag}
                     onValueChange={setFlag}

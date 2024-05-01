@@ -56,7 +56,7 @@ const CategoryFilterWindow = ({category, setCategory} : CategoryFilterProps) => 
     }, []);
 
     return (
-        <div className={"bg-black w-full rounded-md py-4 px-8"}>
+        <div className={"bg-black w-full rounded-md p-4"}>
             <p className={"text-white font-bold text-xl text-center mb-2"}>Category filter</p>
             <div className={"flex flex-col justify-center gap-2 w-full"}>
                 <RadioGroup className={"w-full"}
