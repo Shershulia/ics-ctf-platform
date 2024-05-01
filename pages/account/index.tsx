@@ -28,11 +28,11 @@ export default function AccountPage() {
     return (
         <div>
             <FrontendLayout>
-                <div className={"grid grid-cols-3 gap-10"}>
+                <div className={"lg:grid lg:grid-cols-3 lg:gap-10 gap-6 flex flex-col"}>
                     <div>
                         <LeftAccountPageComponent name={name} email={email}/>
                     </div>
-                    <div className="col-span-2">
+                    <div className="lg:col-span-2">
                         <RightMainFunctionsComponent 
                             name={name}
                             email={email}

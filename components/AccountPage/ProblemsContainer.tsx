@@ -41,7 +41,7 @@ const ProblemContainer = ({} : ProblemContainerProps) => {
     }
 
     return (
-        <div className={"flex flex-col gap-4 my-4 w-[80%] mx-auto"}> 
+        <div className={"flex flex-col gap-4 my-4 lg:w-[80%] w-[90%] mx-auto"}> 
             <h1 className='text-center text-xl font-bold'>Your solved problems: </h1>
             {isLoading ? (<Spinner color="primary"/>)
                 :
@@ -49,7 +49,7 @@ const ProblemContainer = ({} : ProblemContainerProps) => {
                     {problems.length ? 
                         (problems.map(problem => (
                         <div className='w-full border-l border-y rounded-2xl flex justify-between items-center border-success'>
-                            <p className='pl-4'>{problem.id}.{problem.title}</p>
+                            <p className='pl-4 truncate w-2/3'>{problem.id}.{problem.title}</p>
                             <Button color="primary" 
                                 variant="solid" 
                                 size={"lg"} 

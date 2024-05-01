@@ -74,7 +74,7 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, 
                     
                     <ProblemContainer />
                     <h1 className='text-center text-xl font-bold'>Your credentials: </h1>
-                    <div className={"flex gap-4 my-4 w-[80%] mx-auto"}>
+                    <div className={"flex gap-4 my-4 lg:w-[80%] w-[90%] mx-auto"}>
                         <Input
                             label="Name"
                             variant={"bordered"}
@@ -91,7 +91,7 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, 
                             Update Name
                         </Button>  
                     </div>
-                    <div className={"flex gap-4 my-4 w-[80%] mx-auto"}>
+                    <div className={"flex gap-4 my-4 lg:w-[80%] w-[90%] mx-auto"}>
                         <Input
                             label="Email"
                             variant={"bordered"}
@@ -108,7 +108,7 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, 
                             Update Email
                         </Button>  
                     </div>
-                    <div className='w-full flex justify-center items-center pb-12'>
+                    <div className='w-full flex justify-center items-center lg:pb-12 '>
                         <Button color="danger" variant="flat" size={"lg"} className={"py-7 mb-5"} onClick={clearCredentials}>
                                 Clear credentials
                             </Button>  
@@ -116,7 +116,7 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, 
                 </div>
             ) : (
                     <div className='h-full flex flex-col justify-center items-center'>
-                        <div className='flex w-[80%] h-full flex-col justify-center gap-12 items-center'>
+                        <div className='flex lg:w-[80%] w-[90%] h-full flex-col justify-center gap-12 items-center'>
                             <div className='w-full'>
                                 <h1 className='text-center text-xl font-bold my-4'>Statistics: </h1>
                                 <StatisticsComponent/>
@@ -124,6 +124,7 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, 
                             <div className='w-full'>
                                 <h1 className='text-center text-xl font-bold my-4'>Your solved problems: </h1>
                                 <Progress
+                                    label="Solved problems"
                                     aria-label="Downloading..."
                                     size="md"
                                     value={myPoints/totalPoints*100}
