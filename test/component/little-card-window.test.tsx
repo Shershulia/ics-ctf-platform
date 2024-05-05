@@ -4,7 +4,7 @@ import {describe, expect, it} from "@jest/globals";
 import '@testing-library/jest-dom/extend-expect';
 import {IProblem} from "../../ITypes/IProblem";
 import LittleCardComponent from "../../components/ProblemPopUp/LittleCardComponent";
-import {problem_example} from "./data.test";
+import {problem_example} from "./data";
 
 
 describe('Problem Little Card Component', () => {
@@ -45,7 +45,7 @@ describe('Problem Little Card Component', () => {
         const categoryTab = screen.getByText('General Skills')
         expect(categoryTab).toBeDefined();
         // @ts-ignore
-        expect(categoryTab).toHaveClass('w-2/3');
+        expect(categoryTab).toHaveClass('lg:w-2/3 truncate w-full');
 
     });
 
@@ -54,8 +54,8 @@ describe('Problem Little Card Component', () => {
         const categoryTab = screen.getByText('Test').parentElement
         expect(categoryTab).toBeDefined();
         // @ts-ignore
-        expect(categoryTab).toHaveClass('bg-white border p-4 border-2 rounded-md overflow-hidden ' +
-            'flex flex-col justify-between z-10 cursor-pointer bg-white');
+        expect(categoryTab).toHaveClass('bg-white border lg:p-4 p-2 border-2 rounded-md overflow-hidden flex ' +
+            'flex-col justify-between z-10 cursor-pointer bg-white');
 
     });
 

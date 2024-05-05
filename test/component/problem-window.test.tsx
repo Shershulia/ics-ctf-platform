@@ -4,7 +4,7 @@ import {describe, expect, it} from "@jest/globals";
 import '@testing-library/jest-dom/extend-expect';
 import DisplableCard from "../../components/ProblemPopUp/DisplableCard";
 import {IProblem} from "../../ITypes/IProblem";
-import {problem_example} from "./data.test";
+import {problem_example} from "./data";
 
 
 

@@ -4,13 +4,15 @@ import {MdManageAccounts, MdOutlineFeedback} from "react-icons/md";
 import {GrAchievement} from "react-icons/gr";
 
 type UserTabsComponentsProps = {
-    selected: string;
-    setSelected: React.Dispatch<React.SetStateAction<string>>;
+    selected?: string;
+    setSelected?: React.Dispatch<React.SetStateAction<string>>;
 
 }
 const UserTabsComponents = ({selected,setSelected} : UserTabsComponentsProps) => {
     const handleSelectionChange = (key: Key) => {
-        setSelected(key as string);
+        if (setSelected) {
+            setSelected(key as string);
+        }
     };
     return (
         <Tabs aria-label="Options" color="primary"

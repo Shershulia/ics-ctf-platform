@@ -5,8 +5,8 @@ type SortTopFilterProps = {
     setPage?: (value: number) => void,
     page?: number,
     totalProblems?: number,
-    filter: string,
-    setFilter: (value: string) => void,
+    filter?: string,
+    setFilter?: (value: string) => void,
 
 }
 const SortTopFilterComponent = ({setPage,page,totalProblems=9, filter, setFilter}:SortTopFilterProps) => {

@@ -41,11 +41,12 @@ describe('problems api test', () => {
                     }
                     )
             });
-            it('should return array with 9 problems from first page', async () => {
+            //TODO UPDATE AMOUNT OF PROBLEMS
+            it('should return array with 13 problems from first page', async () => {
                 await pactum.spec()
                     .get('/problems')
                     .expectStatus(200)
-                    .expectJsonLength('problems',9);
+                    .expectJsonLength('problems',13);
             });
             it('search is working', async () => {
                 await pactum.spec()

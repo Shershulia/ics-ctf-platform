@@ -1,8 +1,8 @@
 import React from 'react';
 
 type LeftAccountProps = {
-   name : string | null;
-   email:string | null;
+   name? : string | null;
+   email?:string | null;
 }
 
 const LeftAccountPageComponent = ({name, email} : LeftAccountProps ) => {
