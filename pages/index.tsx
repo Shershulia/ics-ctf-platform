@@ -56,8 +56,9 @@ export default function Home() {
         useEffect(() => {
             setDisplayProblems(problems.slice((page - 1) * 9, page * 9));
             if (filter === "Date") {
-                setDisplayProblems(prevState => (
-                    prevState.slice().sort((a, b) => {
+                setDisplayProblems((prevState: any) => (
+                    prevState.slice().sort((a : string, b : string) => {
+                        //@ts-ignore
                         return new Date(a.createdAt) - new Date(b.createdAt);
                     })
                 ));
@@ -69,7 +70,7 @@ export default function Home() {
                 ));
             } else if (filter === "Difficulties") {
                 setDisplayProblems(prevState => (
-                    prevState.slice().sort((a, b) => {
+                    prevState.slice().sort((a : any, b : any) => {
                         return a.difficultyId - b.difficultyId;
                     })
                 ));
