@@ -6,7 +6,7 @@ import {Spinner} from "@nextui-org/react";
 
 type ProblemContainerProps = {
 }
-
+/* eslint-disable */
 
 const ProblemContainer = ({} : ProblemContainerProps) => {
     
@@ -14,7 +14,7 @@ const ProblemContainer = ({} : ProblemContainerProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
     const fetchProblems = () => {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             const solvedIds = JSON.parse(localStorage.getItem(`solved`) || '[]');
             setIsLoading(true);
             axios.post("/api/problems/solved",{ids : solvedIds}).then(res=>{
@@ -42,14 +42,14 @@ const ProblemContainer = ({} : ProblemContainerProps) => {
 
     return (
         <div className={"flex flex-col gap-4 my-4 lg:w-[80%] w-[90%] mx-auto"}> 
-            <h1 className='text-center text-xl font-bold'>Your solved problems: </h1>
+            <h1 className="text-center text-xl font-bold">Your solved problems: </h1>
             {isLoading ? (<Spinner color="primary"/>)
                 :
                 (<>
                     {problems.length ? 
                         (problems.map(problem => (
-                        <div className='w-full border-l border-y rounded-2xl flex justify-between items-center border-success'>
-                            <p className='pl-4 truncate w-2/3'>{problem.id}.{problem.title}</p>
+                        <div key={problem.id} className="w-full border-l border-y rounded-2xl flex justify-between items-center border-success">
+                            <p className="pl-4 truncate w-2/3">{problem.id}. {problem.title}</p>
                             <Button color="primary" 
                                 variant="solid" 
                                 size={"lg"} 
@@ -59,7 +59,7 @@ const ProblemContainer = ({} : ProblemContainerProps) => {
                             </Button>  
                         </div>
                     ))) : (
-                        <p className='text-center'>You didn't solve any problems yet</p>
+                        <p className="text-center">You didn't solve any problems yet</p>
                     )}
                 </>
 

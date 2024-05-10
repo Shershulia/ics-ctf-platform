@@ -6,31 +6,31 @@ import cookies from 'next-cookies';
 const CheckCookieProblemPage = ({ cookie } : {cookie:string} ) => {
     const [value, setValue] = React.useState("");
     useEffect(() => {
-            if (cookie === "0") {
-                setValue('snickerdoodle');
-            }else if (cookie === '1') {
-                setValue('chocolate chip cookies');
-            }else if (cookie=== '2') {
-                setValue('oatmeal raisin');
-            }else if (cookie === '3') {
-                setValue('shortbread');
-            }else if (cookie === '4') {
-                setValue('peanut butter');
-            }else if (cookie === '5') {
-                setValue('sugar');
-            }else if (cookie === '6') {
-                setValue('biscotti');
-            }else if (cookie === '7') {
-                setValue('butter');
-            }else if (cookie === '8') {
-                setValue('wafers');
-            }else if (cookie === '9') {
-                setValue('macaroons');
-            }else if (cookie === '10') {
-                setValue('CTF-{FLAG}');
-            }
-    }
-    ,[]);
+        if (cookie === "0") {
+            setValue('snickerdoodle');
+        } else if (cookie === '1') {
+            setValue('chocolate chip cookies');
+        } else if (cookie === '2') {
+            setValue('oatmeal raisin');
+        } else if (cookie === '3') {
+            setValue('shortbread');
+        } else if (cookie === '4') {
+            setValue('peanut butter');
+        } else if (cookie === '5') {
+            setValue('sugar');
+        } else if (cookie === '6') {
+            setValue('biscotti');
+        } else if (cookie === '7') {
+            setValue('butter');
+        } else if (cookie === '8') {
+            setValue('wafers');
+        } else if (cookie === '9') {
+            setValue('macaroons');
+        } else if (cookie === '10') {
+            setValue('CTF-{FLAG}');
+        }
+    }, [cookie]);
+    
     return (
         <div className={"m-auto w-screen mt-12 bg-white "}>
             <div className={"w-1/2 m-auto"}>

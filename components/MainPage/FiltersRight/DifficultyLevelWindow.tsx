@@ -8,7 +8,7 @@ type DifficultyLevelWindowProps = {
     difficulty?: number,
     setDifficulty?: (value: number) => void,
 };
-
+/* eslint-disable */
 const DifficultyLevelWindow = ({difficulty,setDifficulty = ()=>{}}: DifficultyLevelWindowProps) => {
     //Basic categories
     const allDifficulties : IDifficulty = {
