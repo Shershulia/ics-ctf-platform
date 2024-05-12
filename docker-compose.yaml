@@ -14,7 +14,8 @@ services:
   test-vm:
     image: shershulia/ctf-ics:latest
     ports:
-      - 8000:8000
+      - "22:22"
+      - "8080:8080"
     stdin_open: true
     tty: true
     command: /bin/bash -c "sudo apt update && cd /ctf-ics && /bin/bash"

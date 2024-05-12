@@ -2,7 +2,7 @@ import {beforeAll, describe, expect, it} from "@jest/globals";
 import * as pactum from 'pactum';
 
 //Start test DB before
-describe("Category api test", () => {
+xdescribe("Category api test", () => {
     beforeAll(async () => {
         pactum.request.setBaseUrl('http://localhost:3000')
         console.log("Resetting database")

@@ -6,14 +6,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProblemContainer from './ProblemsContainer';
 import StatisticsComponent from './StatisticsComponent';
 import CreateDiplomaComponent from './CreateDiplomaComponent';
+import AchievementsComponent from "@/components/AccountPage/AchievementsComponent";
 
 type RightMainFunctionsProps = {
-    name : string | null;
-    setName: Dispatch<SetStateAction<string>>;
-    email:string | null;
-    setEmail: Dispatch<SetStateAction<string>>;
-    myPoints: number;
-    totalPoints: number;
+    name? : string | null;
+    setName?: Dispatch<SetStateAction<string>>;
+    email?:string | null;
+    setEmail?: Dispatch<SetStateAction<string>>;
+    myPoints?: number;
+    totalPoints?: number;
  }
  
 const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, totalPoints} : RightMainFunctionsProps) => {
@@ -36,20 +37,28 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, 
     const setNameInLocalStorage = () =>{
         toast.success("Your name is updated to "+inputName);
         localStorage.setItem("name",inputName)
-        setName(inputName)
+        if (setName) {
+            setName(inputName)
+        }
         
     }
     const setEmailInLocalStorage = () =>{
         toast.success("Your email is updated to "+inputEmail);
         localStorage.setItem("email",inputEmail)
-        setEmail(inputEmail)
+        if (setEmail) {
+            setEmail(inputEmail)
+        }
 
     }
     const clearCredentials = () => {
         localStorage.setItem("name","")
-        setName("undefined")
+        if (setName) {
+            setName("undefined")
+        }
         localStorage.setItem("email","")
-        setEmail("undefined")
+        if (setEmail) {
+            setEmail("undefined")
+        }
         toast.info("Credentials cleared!");
     }
     
@@ -115,37 +124,8 @@ const RightMainFunctionsComponent = ({name, setName, email, setEmail, myPoints, 
                     </div>
                 </div>
             ) : (
-                    <div className='h-full flex flex-col justify-center items-center'>
-                        <div className='flex lg:w-[80%] w-[90%] h-full flex-col justify-center gap-12 items-center'>
-                            <div className='w-full'>
-                                <h1 className='text-center text-xl font-bold my-4'>Statistics: </h1>
-                                <StatisticsComponent/>
-                            </div>
-                            <div className='w-full'>
-                                <h1 className='text-center text-xl font-bold my-4'>Your solved problems: </h1>
-                                <Progress
-                                    label="Solved problems"
-                                    aria-label="Downloading..."
-                                    size="md"
-                                    value={myPoints/totalPoints*100}
-                                    color="success"
-                                    showValueLabel={true}
-                                    className="w-full"
-                                    />
-                            </div>
-                            <div className='w-full flex flex-col justify-center items-center'>
-                                <h1 className='text-center text-xl font-bold my-4'>Assign your diploma: </h1>
-                                <CreateDiplomaComponent 
-                                    name={name}
-                                    email={email}
-                                    problemsSolved={myPoints/totalPoints*100}
-                                    
-                                    />
-
-                                    
-                            </div>
-                        </div>
-                    </div>
+                    <AchievementsComponent totalPoints={totalPoints} email={email}
+                                            myPoints={myPoints} name={name}/>
             )}
         </div>
     );

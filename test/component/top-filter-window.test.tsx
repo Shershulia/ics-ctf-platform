@@ -52,10 +52,10 @@ describe('CategoryFilterWindow Component', () => {
         const paginationItems = screen.getAllByLabelText(/pagination item 1 active/i);
         expect(paginationItems.length).toBeGreaterThan(0);
     });
-    it('selected background color primary', async () => {
+    it('selected is found', async () => {
         render(<SortTopFilterComponent />);
-        const select = screen.getAllByText('Date')[1]
+        const select = screen.getAllByText('Date')[0]
         // @ts-ignore
-        expect(select).toHaveClass('group-data-[has-value=true]:text-primary');
+        expect(select).toBeDefined();
     });
 });

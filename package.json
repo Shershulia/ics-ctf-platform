@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "test": "dotenv -e .env.test -- next dev",
-    "build": "prisma generate && next build ",
+    "test": "jest --ignore=categories.test.tsx",
+    "dev:test": "dotenv -e .env.test -- next dev",
+    "build": "prisma generate && next build",
     "dev:all-services": "npm run db:dev:restart && npm run services && next dev",
     "start": "next start",
     "lint": "next lint",

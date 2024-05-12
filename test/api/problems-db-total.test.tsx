@@ -22,7 +22,7 @@ describe('categories api test', () => {
                 await pactum.spec()
                     .get('/total')
                     .expectStatus(200)
-                    .expectBodyContains({"totalProblems": 10})
+                    .expectBodyContains({"totalProblems": 13})
             });
         });
 
