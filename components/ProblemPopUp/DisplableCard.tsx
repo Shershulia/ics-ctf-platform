@@ -17,7 +17,7 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
 
     useEffect(()=>{
         setIsInSaved(JSON.parse(localStorage.getItem(`saved`) || '[]').includes(problem.id))
-    },[])
+    },[problem.id])
 
     const closeWindowSolved = () => {
         toast.success("Good job! You have solved the problem")
@@ -69,7 +69,7 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
         if (saved) {
             let solvedArray = JSON.parse(saved);
             if (solvedArray.includes(problem.id)) {
-                let newSolvedArray = solvedArray.filter(id => id !== problem.id);
+                let newSolvedArray = solvedArray.filter((id : any) => id !== problem.id);
                 localStorage.setItem(`saved`, JSON.stringify(newSolvedArray));
             } else {
                 let newSolvedArray = [...solvedArray, problem.id];
@@ -125,14 +125,14 @@ const DisplableCard = ({problem, onClose}:PopUpProps) => {
             <div className={"h-px bg-gray my-4"}/>
 
             <div className={"flex justify-between"}>
-            <div className={` ${problem.hints?.length > 0 ? 'w-3/5' : 'w-full'}`}>
+            <div className={` ${ problem.hints && problem.hints?.length > 0 ? 'w-3/5' : 'w-full'}`}>
                     <p className={"font-bold text-2xl"}>Description</p>
 
                     <ScrollShadow size={40} hideScrollBar  className="w-full h-48">
                         <p className={"my-4"}>{problem.description}</p>
                     </ScrollShadow>
                 </div>
-                {problem.hints?.length>0 && (
+                {problem.hints && problem.hints?.length>0 && (
                 <div className={"w-2/5  flex flex-col justify-start items-center text-center text-sm ml-2"}>
                     <p className={"font-bold text-2xl mb-4"}>Hints</p>
                         <Pagination
