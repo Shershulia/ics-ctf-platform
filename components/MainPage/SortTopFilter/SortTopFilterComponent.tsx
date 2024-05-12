@@ -9,7 +9,7 @@ type SortTopFilterProps = {
     setFilter?: (value: string) => void,
 
 }
-const SortTopFilterComponent = ({setPage,page,totalProblems=9, filter, setFilter}:SortTopFilterProps) => {
+const SortTopFilterComponent = ({setPage,page,totalProblems=9, filter="Date", setFilter = ()=>{}}:SortTopFilterProps) => {
     const filters = ["Date", "Points" , "Difficulties", "Id"]
     const totalPages = Math.ceil(totalProblems/9) || 1;
     const handleSelectionChange = (e : ChangeEvent<HTMLSelectElement>) => {
@@ -25,6 +25,7 @@ const SortTopFilterComponent = ({setPage,page,totalProblems=9, filter, setFilter
                 <Select
                     aria-label={"select"}
                     variant="flat"
+                    //@ts-ignore
                     selectedKeys={[filter]}
                     classNames={{
                         label: "group-data-[filled=true]:-translate-y-5 text-primary",

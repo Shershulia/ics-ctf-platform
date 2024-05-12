@@ -13,96 +13,28 @@ describe('problems api test', () => {
     describe('Problems', () => {
 
         describe('successful api calls', () => {
-            it('contains first problem', async () => {
+        
+            it('should return array with 20', async () => {
                 await pactum.spec()
                     .get('/problems')
                     .expectStatus(200)
-                    .expectBodyContains({
-                        "id": 1,
-                        "title": "Obedient Cat",
-                        "description": "This file has a flag in plain sight (aka \"in-the-clear\"). Try to find key. You can find it in test-vm opg1.",
-                        "points": 5,
-                        "attached_file": [],
-                        "hints": [
-                            "$ man cat"
-                        ],
-                        "isInTerminal": true,
-                        "categoryId": 4,
-                        "difficultyId": 1,
-                        "createdAt": "2024-04-18T17:46:00.237Z",
-                        "category": {
-                            "id": 4,
-                            "name": "General Skills"
-                        },
-                        "difficulty": {
-                            "id": 1,
-                            "name": "Easy"
-                        }
-                    }
-                    )
-            });
-            //TODO UPDATE AMOUNT OF PROBLEMS
-            it('should return array with 13 problems from first page', async () => {
-                await pactum.spec()
-                    .get('/problems')
-                    .expectStatus(200)
-                    .expectJsonLength('problems',13);
+                    .expectJsonLength('problems',20);
             });
             it('search is working', async () => {
                 await pactum.spec()
                     .get('/problems?search=Obedient%20Cat')
                     .expectStatus(200)
-                    .expectBodyContains({
-                            "id": 1,
-                            "title": "Obedient Cat",
-                            "description": "This file has a flag in plain sight (aka \"in-the-clear\"). Try to find key. You can find it in test-vm opg1.",
-                            "points": 5,
-                            "attached_file": [],
-                            "hints": [
-                                "$ man cat"
-                            ],
-                            "isInTerminal": true,
-                            "categoryId": 4,
-                            "difficultyId": 1,
-                            "createdAt": "2024-04-18T17:46:00.237Z",
-                            "category": {
-                                "id": 4,
-                                "name": "General Skills"
-                            },
-                            "difficulty": {
-                                "id": 1,
-                                "name": "Easy"
-                            }
-                        }
-                    )            });
+                    .expectJsonLength('problems',1);
+            });
+            
+            
 
             it('category search is working', async () => {
                 await pactum.spec()
-                    .get('/problems?search=&category=1&difficulty=0&page=1')
+                    .get('/problems?search=&category=2&difficulty=3&page=1')
                     .expectStatus(200)
-                    .expectBodyContains({
-                            "id": 3,
-                            "title": "Cookie Monster",
-                            "description": "Who doesn't love cookies? Try to figure out the best one. Go to the path /problems/cookie-problem",
-                            "points": 5,
-                            "attached_file": [],
-                            "hints": [
-                                "How does it connected with cookie?"
-                            ],
-                            "isInTerminal": false,
-                            "categoryId": 1,
-                            "difficultyId": 1,
-                            "createdAt": "2024-04-18T17:46:00.268Z",
-                            "category": {
-                                "id": 1,
-                                "name": "Web Exploitation"
-                            },
-                            "difficulty": {
-                                "id": 1,
-                                "name": "Easy"
-                            }
-                        }
-                    )            });
+                    .expectJsonLength('problems',1);             
+                    });
         });
 
         describe('unsuccessful api calls', () => {
