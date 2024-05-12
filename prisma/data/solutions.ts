@@ -1,6 +1,6 @@
 module.exports = [
     {
-        solution: 'CTF_KEY = {Me0w-mEoW}',
+        solution: 'CTF-{Me0w-mEoW}',
         problemId: 1,
 
     },
