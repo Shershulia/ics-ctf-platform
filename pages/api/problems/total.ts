@@ -6,7 +6,11 @@ type Data = {
     totalProblems?: number,
     error?: string
 }
-
+// API ROUTE TO GET TOTAL AMOUNT OF PROBLEMS IN OUR DATABASE
+// CAN HANDLE ONLY GET METHOD
+// RESPONSE 200 WITH AMOUNT OF PROBLEMS IN DATABASE
+// THROW 403 ERROR IF HTTP METHOD IS NOT GET
+// THROW 500 ERROR IF HAPPENS PROBLEM DURING SEARCH OR PROBLEM ON SERVER
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>

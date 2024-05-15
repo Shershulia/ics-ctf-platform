@@ -5,7 +5,12 @@ type Data = {
     output?: string;
     error?: string;
 };
-
+// API ROUTE TO SEND COMMAND TO VIRTUAL MACHINE FROM WEBSITE
+// CAN HANDLE ONLY POST METHOD
+// TAKES COMMAND AND ID OF PROBLEM IN REQUESTBODY
+// RESPONSE 200 WITH COMMAND RESPONSE FROM TEST ENVIRONMENT
+// THROW 405 ERROR IF HTTP METHOD IS NOT POST
+// THROW 500 ERROR IF HAPPENS PROBLEM DURING COMMAND EXECUTION OR PROBLEM ON SERVER
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     try {
         if (req.method === 'POST') {
