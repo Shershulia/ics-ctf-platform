@@ -4,12 +4,19 @@ type Data = {
     decision?:boolean;
     error?: string;
 }
+// API ROUTE TO CHECK SOLUTION TO GIVEN PROBLEM
+// CAN HANDLE ONLY GET METHOD
+// TAKES PROBLEMID AND SOLUTION FROM REQUEST QUERY TO CHECK SOLUTION
+// RESPONSE 200 WITH BOOLEAN WITH DECISION IF SOLUTION GIVEN BY USER IS RIGHT
+// THROW 400 ERROR IF PROBLEMID OR SOLUTION IS NOT GIVEN IN REQUEST QUERY
+// THROW 404 IF SOLUTION FOR PROBLEM IS NOT FOUND IN DATABASE
+// THROW 403 ERROR IF HTTP METHOD IS NOT GET
+// THROW 500 ERROR IF HAPPENS PROBLEM DURING SEARCH OR PROBLEM ON SERVER
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     try {
         if (req.method === 'GET') {
             const {problemId, solution} = req.query;
-            console.log(problemId, solution);
             // Check if problemId is provided
             if (!problemId || typeof problemId !== 'string') {
                 return res.status(400).json({ error: 'Invalid or missing problemId' });

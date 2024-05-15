@@ -6,7 +6,11 @@ type Data = {
     totalPoints?: number,
     error?: string
 }
-
+// API ROUTE TO GET AMOUNT POINTS FOR ALL AVAILABLE PROBLEMS
+// CAN HANDLE ONLY HET METHOD
+// RESPONSE WITH AMOUNT OF ALL POINTS THAT USER CAN ACHIEVE
+// THROW 403 ERROR IF HTTP METHOD IS NOT GET
+// THROW 500 ERROR IF HAPPENS PROBLEM DURING SEARCH OR PROBLEM ON SERVER
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>

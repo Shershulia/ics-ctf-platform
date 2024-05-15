@@ -5,6 +5,11 @@ type Data = {
     difficulties?: IDifficulty[];
     error?: string;
 }
+// API ROUTE TO GET ALL DIFFICULTIES IN SYSTEM
+// CAN HANDLE ONLY GET METHOD
+// RESPONSE 200 WITH ARRAY WITH ALL DIFFICULTIES IN THE SYSTEM
+// THROW 403 ERROR IF HTTP METHOD IS NOT GET
+// THROW 500 ERROR IF HAPPENS PROBLEM DURING SEARCH OR PROBLEM ON SERVER
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     try {
         if (req.method === 'GET') {
