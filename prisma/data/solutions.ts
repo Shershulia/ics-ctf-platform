@@ -61,4 +61,32 @@ module.exports = [
         solution: 'CTF-{0PC_U4_X_P3RT}',
         problemId: 13,
     },
+    {
+        solution: 'CTF-{TVFUVCBCcm9rZXI}',
+        problemId: 14,
+    },
+    {
+        solution: 'CTF-{c2VjcmV0IGluZm9ybWF0aW9u}',
+        problemId: 15,
+    },
+    {
+        solution: 'CTF-{bXF0dCBleHBlcnQh}',
+        problemId: 16,
+    },
+    {
+        solution: 'CTF-{cGxjIGJlZ2lubmVy}',
+        problemId: 17,
+    },
+    {
+        solution: 'CTF-{cGxjIGZhY3Rvcnkg}',
+        problemId: 18,
+    },
+    {
+        solution: 'CTF-{ZW5jcnlwdGVk}',
+        problemId: 19,
+    },
+    {
+        solution: 'CTF-{CTF-{c2VjcmV0c2xj}}',
+        problemId: 20,
+    },
 ]

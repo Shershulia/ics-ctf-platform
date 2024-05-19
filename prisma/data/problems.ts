@@ -116,7 +116,7 @@ module.exports = [
         points: 5,
         categoryId : 2,
         difficultyId: 1,
-        hints:[],
+        hints:["Familiarize yourself with how Node-RED configuration works"],
         isInTerminal: true,
     },
     {
@@ -128,7 +128,7 @@ module.exports = [
         points: 15,
         categoryId : 3,
         difficultyId: 3,
-        hints:[],
+        hints:["The data is being sent through a OPC UA server within Node-RED", "Packet sniffing is a valid option for solving this task"],
         isInTerminal: true,
     },
     {
@@ -138,7 +138,7 @@ module.exports = [
         points: 10,
         categoryId : 3,
         difficultyId: 2,
-        hints:[],
+        hints:["Some sources within the OPC UA server may contain useful hints to decoding the flag"],
         isInTerminal: true,
     },
     {
@@ -150,7 +150,7 @@ module.exports = [
         points: 10,
         categoryId : 4,
         difficultyId: 2,
-        hints:[],
+        hints:["Try to subscribe to some of the topics within the MQTT broker to see what kind of information you can find"],
         isInTerminal: true,
     },
     {
@@ -162,7 +162,7 @@ module.exports = [
         points: 10,
         categoryId : 3,
         difficultyId: 2,
-        hints:[],
+        hints:["Software such as Wireshark are a viable option for solving this task"],
         isInTerminal: true,
     },
     {
@@ -174,7 +174,7 @@ module.exports = [
         points: 15,
         categoryId : 1,
         difficultyId: 3,
-        hints:[],
+        hints:["Remember to subscribe to some of the topics to see if you can find any useful information", "As a non-administrator, you can't see all of the factory variables, but perhaps you can still access them?"],
         isInTerminal: true,
     },
     {
@@ -185,7 +185,7 @@ module.exports = [
         points: 5,
         categoryId : 4,
         difficultyId: 1,
-        hints:[],
+        hints:["Familiarize yourself with CODESYS to understand the format of the file", "The export file contains some highly sensitive code if you look closely"],
         isInTerminal: true,
     },
     {
@@ -197,7 +197,7 @@ module.exports = [
         points: 15,
         categoryId : 5,
         difficultyId: 3,
-        hints:[],
+        hints:["Ghidra can help you find crucial variables within the decompiled code, for instance 'password'", "Using the search function within Ghidra may highly of use", "Certain folders such as .rdata may contain crucial data"],
         isInTerminal: true,
     },
     {
@@ -209,7 +209,7 @@ module.exports = [
         points: 15,
         categoryId : 2,
         difficultyId: 3,
-        hints:[],
+        hints:["Look at the decompiled 'decryptPassword' function in Ghidra to see if you can find anything important", "Some bitwise operation was used for the encryption, can you see which one?"],
         isInTerminal: true,
     },
     {
@@ -221,7 +221,7 @@ module.exports = [
         points: 10,
         categoryId : 4,
         difficultyId: 2,
-        hints:[],
+        hints:["Something seems to be off with certain variable values", "Could the increments within certain variables be some kind of code?", "ASCII is highly useful to know for this task"],
         isInTerminal: true,
     },
 ]
