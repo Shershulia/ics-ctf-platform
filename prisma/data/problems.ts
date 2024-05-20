@@ -108,7 +108,8 @@ module.exports = [
         hints:[],
         isInTerminal: true,
     },
-    {
+    {   
+        id: 11,
         title: 'Node-RED Configuration',
         description: "Node-RED is an essential part of the ICS testbed, which allows for connection between the testbed’s hardware and the respective APIs. " +
             "An essential part of Node-RED is configuring the flow settings which are used upon startup, which contains a key used to encrypt and decrypt credentials used in certain nodes within the flows. " +
@@ -119,7 +120,8 @@ module.exports = [
         hints:[],
         isInTerminal: true,
     },
-    {
+    {   
+        id:12,
         title: 'Node-RED Flows',
         description: "Flows in Node-RED allow for communication between different message protocols. " +
             "In the testbed, it is used to convert between MQTT and OPC/UA. " +
@@ -132,6 +134,7 @@ module.exports = [
         isInTerminal: true,
     },
     {
+        id:13,
         title: 'Understanding OPC/UA',
         description: "OPC Unified Architecture is a machine-to-machine communication protocol used for exchange of various data and is frequently used in industrial applications to allow for secure exchange of industrial automation data. " +
             "Have a look at the files provided using UaExpert and develop an understanding of its functionality by attempting to find the flag hidden within.",
@@ -142,6 +145,7 @@ module.exports = [
         isInTerminal: true,
     },
     {
+        id:14,
         title: 'The Broken Broker',
         description: "MQTT is a standard messaging protocol for IoT renown for its lightweight messaging transport which is ideal for connecting remote devices. " +
             "MQTT brokers are coordinators used to receive and filter messages for various clients. Unfortunately, MQTT brokers are often configured poorly - leading to security vulnerabilities and exposed topics with sensitive data. " +
@@ -154,6 +158,7 @@ module.exports = [
         isInTerminal: true,
     },
     {
+        id:15,
         title: 'Open Airwaves',
         description: "While some MQTT brokers openly share their topics with all parties, more properly configured brokers can keep sensitive data hidden out of plain sight. " +
             "However, vulnerabilities still present themselves when the hidden data is not properly encrypted. " +
@@ -166,6 +171,7 @@ module.exports = [
         isInTerminal: true,
     },
     {
+        id:16,
         title: 'Actions And Orders',
         description: "Client-to-server communication is crucial for industries in order to transmit orders and execute commands for the sake of efficient production. " +
             "Users should also only be able to execute commands and access resources corresponding to their rank. " +
@@ -178,6 +184,7 @@ module.exports = [
         isInTerminal: true,
     },
     {
+        id:17,
         title: 'Logic Lock',
         description: "CODESYS is an important PLC programming tool for developing automation software for industrial control systems, meaning it is a crucial part of any automation software engineer to understand how CODESYS programs work. " +
             "In this scenario, an export file was sent to you for analysis to see if you can extract any sensitive data out of the exported resource. " +
@@ -189,6 +196,7 @@ module.exports = [
         isInTerminal: true,
     },
     {
+        id:18,
         title: 'Authorization Alert',
         description: "Proper security is crucial when dealing with any kind of software which contains sensitive data. " +
             "our boss has recently mentioned that several unauthorized parties have managed to use certain passwords to access the control system through the TXT controller - making some of its functionality severely compromised. " +
@@ -201,6 +209,7 @@ module.exports = [
         isInTerminal: true,
     },
     {
+        id:19,
         title: 'Decryption Danger',
         description: "Your fellow colleague has recently created a password encryption system which they believe will be sufficient for ICS access management. " +
             "Another employee has come forward with saying that the system might not be as safe as initially believed. " +
@@ -213,6 +222,7 @@ module.exports = [
         isInTerminal: true,
     },
     {
+        id:20,
         title: 'PLC Problems',
         description: "The industrial control system which has been running flawlessly up until recently has started exhibiting irregular behaviour. " +
             "The company has conducted an investigation and has marked a PLC program involving cyclic interrupt functionality as the culprit behind the irregularities. " +
