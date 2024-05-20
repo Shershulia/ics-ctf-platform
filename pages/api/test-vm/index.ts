@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             let { command, id } = req.body;
 
 
-            exec(`docker exec -w /ctf-ics/opg${id} -u root next-ctf-platform-test-vm-1 ${command}`, (error, stdout, stderr) => {
+            exec(`docker exec -w /ctf-ics/opg${id} -u root ics-ctf-platform-test-vm-1 ${command}`, (error, stdout, stderr) => {
                 if (error) {
                     console.error(`exec error: ${error}`);
                     return res.status(500).json({ error: 'Error executing command' });
